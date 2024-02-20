@@ -19,7 +19,7 @@ Este projeto visa desenvolver um sistema avançado de análise de sentimento, ut
 
 ## Orientador
 
-<a href="https://github.com/ldenardin" title="Luciana de Nardin" rel="nofollow"><img src="docs/img/luciana.png" alt="Luciana" data-canonical-src="https://github.com/ldenardin" width="100vw"/></a>
+<a href="https://github.com/ldenardin" title="Luciana de Nardin" rel="nofollow"><img src="docs/img/luciana.jpge" alt="Luciana" data-canonical-src="https://github.com/ldenardin" width="100vw"/></a>
 
 # Planejamento
 
