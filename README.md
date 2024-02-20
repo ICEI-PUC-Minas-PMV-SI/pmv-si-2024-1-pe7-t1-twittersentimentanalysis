@@ -1,4 +1,4 @@
-# TÍTULO DO PROJETO
+# TWITTER SENTIMENT ANALYSIS
 
 `CURSO: Sistemas de Informação`
 
@@ -6,20 +6,20 @@
 
 `SEMESTRE: 7º`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+Este projeto visa desenvolver um sistema avançado de análise de sentimento, utilizando técnicas de processamento de linguagem natural (PLN) e aprendizado de máquina, para oferecer insights valiosos a partir de grandes volumes de dados textuais.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
-* Nome completo do aluno 5
-* Nome completo do aluno 6
+<a href="https://github.com/alonso-boj" title="Alonso Batista de Oliveira Junior" rel="nofollow"><img src="docs/img/alonso.png" alt="Alonso" data-canonical-src="https://github.com/alonso-boj" width="100vw"/></a>
+<a href="https://github.com/Dande06" title="André Moreira de Carvalho" rel="nofollow"><img src="docs/img/andre.png" alt="Andre" data-canonical-src="https://github.com/Dande06" width="100vw"/></a>
+<a href="https://github.com/gstvcastroc" title="Gustavo Castro Candeia" rel="nofollow"><img src="docs/img/gustavo.png" alt="Gustavo" data-canonical-src="https://github.com/gstvcastroc" width="100vw"/></a>
+<a href="https://github.com/halexmaciel" title="Halex Maciel Silva Vieira" rel="nofollow"><img src="docs/img/halex.png" alt="Halex" data-canonical-src="https://github.com/halexmaciel" width="100vw"/></a>
+<a href="https://github.com/WelbertJr" title="Welbert Luiz Silva Junior" rel="nofollow"><img src="docs/img/welbert.png" alt="Welbert" data-canonical-src="https://github.com/WelbertJr" width="100vw"/></a>
+
 
 ## Orientador
 
-* Nome completo do professor 1
+<a href="https://github.com/ldenardin" title="Luciana de Nardin" rel="nofollow"><img src="docs/img/luciana.png" alt="Tulio" data-canonical-src="https://github.com/ldenardin" width="100vw"/></a>
 
 # Planejamento
 
