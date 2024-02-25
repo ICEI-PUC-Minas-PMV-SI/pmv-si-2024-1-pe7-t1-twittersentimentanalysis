@@ -1,42 +1,27 @@
 # Introdução
 
-Este projeto visa desenvolver um sistema avançado de análise de sentimentos, utilizando tecnologias de ponta em inteligência artificial, especificamente em processamento de linguagem natural e aprendizado de máquina. O sistema proposto busca interpretar e classificar as emoções expressas em grandes volumes de texto, como avaliações de produtos, comentários em redes sociais e feedback de clientes, proporcionando insights valiosos para a tomada de decisões estratégicas em organizações. O projeto insere-se no contexto atual onde a compreensão eficaz das opiniões dos usuários torna-se um diferencial competitivo crucial, abordando a necessidade de análises automatizadas e precisas de sentimentos para aprimorar a experiência do usuário e direcionar melhorias de produtos e serviços.
+Este projeto pretende desenvolver um sistema de análise de sentimentos avançado, empregando tecnologias de ponta em inteligência artificial, especialmente em processamento de linguagem natural e aprendizado de máquina. O objetivo é interpretar e classificar as emoções expressas em grandes volumes de texto, como avaliações de produtos, comentários em redes sociais e feedback de clientes. Essa análise automatizada e precisa de sentimentos visa proporcionar insights valiosos para a tomada de decisões estratégicas nas organizações, melhorando a experiência do usuário e orientando melhorias nos produtos e serviços. Este projeto está alinhado com a crescente demanda por compreensão eficaz das opiniões dos usuários, que se tornou um diferencial competitivo crucial nos dias de hoje.
 
 ## Problema
 
 A complexidade e a sutileza da linguagem humana, incluindo sarcasmo, ambiguidades e expressões culturais, representam um desafio significativo para a análise de sentimentos. Muitas organizações lutam para extrair insights acionáveis de feedbacks textuais devido à falta de ferramentas capazes de compreender tais nuances. O problema central que este projeto se propõe a resolver é a dificuldade em analisar e interpretar eficientemente grandes volumes de dados textuais para identificar o sentimento expresso, impactando diretamente na capacidade de resposta e na adaptação estratégica das organizações às necessidades e percepções dos usuários.
 
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
-
 ## Questão de pesquisa
 
-Como podemos desenvolver um sistema de análise de sentimentos que seja capaz de interpretar com precisão e eficiência os sentimentos expressos em textos, considerando as diversas complexidades e nuances da linguagem humana?
-
-> **Links Úteis**:
-> - [Questão de pesquisa](https://www.enago.com.br/academy/how-to-develop-good-research-question-types-examples/)
-> - [Problema de pesquisa](https://blog.even3.com.br/problema-de-pesquisa/)
+Os feedbacks de outros usuários nas redes sociais, afetam o poder de venda de um determinado produto disponibilizado no mercado? Considerando esse cenário, qual seria o impacto da implementação de um sistema de análise de sentimentos, capaz de interpretar com precisão e eficiência os sentimentos expressos em textos, na tomada de decisões estratégicas das organizações e como isso impactaria o consumidor final?
 
 ## Objetivos preliminares
 
-O objetivo geral deste projeto é desenvolver um sistema de análise de sentimentos robusto, que utilize técnicas avançadas de IA para interpretar dados textuais e classificar sentimentos de forma precisa.
+O propósito fundamental deste projeto é conceber um sistema de análise de sentimentos robusto, empregando técnicas avançadas de inteligência artificial para interpretar dados textuais e realizar classificações de sentimentos de maneira precisa.
 
 Objetivos específicos incluem:
 1. Implementar algoritmos de processamento de linguagem natural para efetivamente extrair características relevantes do texto.
 2. Desenvolver e treinar modelos de aprendizado de máquina para classificar com precisão os sentimentos expressos nos textos analisados.
 3. Criar uma interface de usuário amigável que permita a visualização e interpretação dos resultados da análise de sentimentos.
- 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
 
 ## Justificativa
 
 A análise de sentimentos é fundamental para organizações que desejam entender melhor as percepções de seus usuários, permitindo a otimização de produtos, serviços e estratégias de comunicação. A implementação de um sistema avançado de análise de sentimentos pode transformar o vasto volume de feedback textual em insights acionáveis, melhorando significativamente a capacidade de resposta e adaptação das organizações às demandas do mercado e às necessidades dos usuários.
-
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
 
 ## Público-Alvo
 
@@ -44,12 +29,6 @@ O sistema proposto beneficiará uma ampla gama de stakeholders, incluindo:
 - **Empresas de diversos setores** que coletam feedback textual, como varejo, serviços e plataformas digitais, buscando compreender melhor as percepções dos usuários.
 - **Profissionais de marketing** que necessitam monitorar e analisar sentimentos em relação a marcas e produtos nas redes sociais e outras plataformas digitais.
 - **Equipes de atendimento ao cliente** que buscam identificar e priorizar feedbacks negativos para ação rápida.
-
-> **Links Úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
 
 ## Estado da arte
 
@@ -68,12 +47,6 @@ Referências:
 1. TABOADA, Maite. Sentiment analysis: An overview from linguistics. *Annual Review of Linguistics*, v. 2, p. 325-347, 2016.
 2. MEDHAT, Walaa; HASSAN, Ahmed; KORASHY, Hoda. Sentiment analysis algorithms and applications: A survey. *Ain Shams engineering journal*, v. 5, n. 4, p. 1093-1113, 2014.
 3. WANKHADE, Mayur; RAO, Annavarapu Chandra Sekhara; KULKARNI, Chaitanya. A survey on sentiment analysis methods, applications, and challenges. *Artificial Intelligence Review*, v. 55, n. 7, p. 5731-5780, 2022.
-
-> **Links Úteis**:
-> - [Google Scholar](https://scholar.google.com/)
-> - [IEEE Xplore](https://ieeexplore.ieee.org/Xplore/home.jsp)
-> - [Science Direct](https://www.sciencedirect.com/)
-> - [ACM Digital Library](https://dl.acm.org/)
 
 # Descrição do dataset selecionado
 
@@ -106,8 +79,3 @@ O dataset pode ser acessado através do link: [Sentiment Dataset with 1 Million 
 2. HARRISON, Matt. Machine Learning–Guia de referência rápida: trabalhando com dados estruturados em Python. Novatec Editora, 2019.
 3. RASCHKA, Sebastian; MIRJALILI, Vahid. Python machine learning: Machine learning and deep learning with Python, scikit-learn, and TensorFlow 2. Packt Publishing Ltd, 2019.
 4. GÉRON, Aurélien. Aprende machine learning con scikit-learn, keras y tensorflow. España: Anaya, 2020.
-
-Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho utilizando o padrão ABNT.
-
-> **Links Úteis**:
-> - [Padrão ABNT PUC Minas](https://portal.pucminas.br/biblioteca/index_padrao.php?pagina=5886)
