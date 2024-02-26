@@ -7,17 +7,9 @@
 
 <p align="center">
  Sistema de análise de sentimentos, utilizando técnicas de processamento de linguagem natural (PLN) e aprendizado de máquina, baseadoi em oferta de insights a partir de grandes volumes de dados textuais.
-<br> 
-<a href="docs/contexto.md">ETAPA 1 - Documentação de Contexto e levantamento dos dados</a>
- · 
-<a href="docs/conhecendo-dados.md">ETAPA 2 - Conhecendo os dados</a>
- · 
-<a href="docs/construindo-modelos.md">ETAPA 3 - Preparação dos dados, construção e avaliação dos modelos propostos</a>
- · 
-<a href="docs/implantação-apresentacao.md">ETAPA 4 - Implantação e apresentação da solução</a>
 </p>
 
- <div align="center">
+<div align="center">
    
 ## Integrantes
 
@@ -32,6 +24,15 @@
 
 <a href="https://github.com/ldenardin" title="Luciana de Nardin" rel="nofollow"><img src="docs/img/luciana1.png" alt="Luciana" data-canonical-src="https://github.com/ldenardin" width="100vw"/></a>
 </div>
+
+# Planejamento
+
+| Etapa         | Atividades |
+|  :----:   | ----------- |
+| ETAPA 1         |[Documentação de Contexto e levantamento dos dados](docs/contexto.md) <br> |
+| ETAPA 2         |[Conhecendo os dados](docs/conhecendo-dados.md) <br> |
+| ETAPA 3         |[Preparação dos dados, construção e avaliação dos modelos propostos](docs/construindo-modelos.md) |
+| ETAPA 4        |[Implantação e apresentação da solução](docs/implantação-apresentacao.md) <br>  |
 
 ## Instruções de utilização
 
