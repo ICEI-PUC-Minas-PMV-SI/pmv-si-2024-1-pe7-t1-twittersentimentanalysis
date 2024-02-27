@@ -1,6 +1,6 @@
 # Introdução
 
-Este projeto pretende desenvolver um sistema de análise de sentimentos avançado, empregando tecnologias de ponta em inteligência artificial, especialmente em processamento de linguagem natural e aprendizado de máquina. O objetivo é interpretar e classificar as emoções expressas em grandes volumes de texto, como avaliações de produtos, comentários em redes sociais e feedback de clientes. Essa análise automatizada e precisa de sentimentos visa proporcionar insights valiosos para a tomada de decisões estratégicas nas organizações, melhorando a experiência do usuário e orientando melhorias nos produtos e serviços. Este projeto está alinhado com a crescente demanda por compreensão eficaz das opiniões dos usuários, que se tornou um diferencial competitivo crucial nos dias de hoje.
+Este projeto pretende desenvolver um sistema de análise de sentimentos avançado, empregando tecnologias de ponta em inteligência artificial, especialmente em processamento de linguagem natural e aprendizado de máquina. O objetivo é interpretar e classificar as emoções expressas em grandes volumes de texto. Este projeto está alinhado com a crescente demanda por compreensão eficaz das opiniões dos usuários, que se tornou um diferencial competitivo crucial nos dias de hoje.
 
 ## Problema
 
@@ -8,7 +8,7 @@ A complexidade e a sutileza da linguagem humana, incluindo sarcasmo, ambiguidade
 
 ## Questão de pesquisa
 
-Os feedbacks de outros usuários nas redes sociais, afetam o poder de venda de um determinado produto disponibilizado no mercado? Considerando esse cenário, qual seria o impacto da implementação de um sistema de análise de sentimentos, capaz de interpretar com precisão e eficiência os sentimentos expressos em textos, na tomada de decisões estratégicas das organizações e como isso impactaria o consumidor final?
+Como podem superar os desafios da análise de sentimentos em dados textuais, incluindo a compreensão de nuances como sarcasmo, ambiguidades e expressões culturais, a fim de extrair insights significativos para melhorar a capacidade de resposta e adaptação estratégica às necessidades dos usuários?
 
 ## Objetivos preliminares
 
