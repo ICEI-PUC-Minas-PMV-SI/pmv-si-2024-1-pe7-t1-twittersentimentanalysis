@@ -21,7 +21,13 @@ Objetivos específicos incluem:
 
 ## Justificativa
 
-A análise de sentimentos é fundamental para organizações que desejam entender melhor as percepções de seus usuários, permitindo a otimização de produtos, serviços e estratégias de comunicação. A implementação de um sistema avançado de análise de sentimentos pode transformar o vasto volume de feedback textual em insights acionáveis, melhorando significativamente a capacidade de resposta e adaptação das organizações às demandas do mercado e às necessidades dos usuários.
+A escolha deste tema se fundamenta na crescente demanda por compreensão eficaz das opiniões dos usuários, que se tornou um diferencial competitivo crucial nos dias de hoje. A análise de sentimentos em grandes volumes de texto é essencial para as organizações entenderem as percepções dos usuários e adaptarem suas estratégias de acordo a complexidade da linguagem humana, incluindo nuances como sarcasmo e ambiguidades, representando um desafio significativo que este projeto visa superar. Além disso, a aplicação de tecnologias de ponta em inteligência artificial, como processamento de linguagem natural e aprendizado de máquina, destaca a relevância e a inovação do projeto.
+
+O projeto tem como função principal desenvolver um sistema de análise de sentimentos avançado, utilizando técnicas de inteligência artificial para interpretar e classificar emoções expressas em grandes volumes de texto. O sistema buscará superar a dificuldade em analisar nuances da linguagem humana, permitindo que organizações extraiam insights acionáveis de feedbacks textuais, melhorando assim sua capacidade de resposta e adaptação estratégica.
+
+O público-alvo deste projeto abrange diversas categorias de stakeholders, incluindo empresas de diferentes setores que coletam feedback textual, profissionais de marketing que monitoram sentimentos em relação a marcas nas redes sociais, equipes de atendimento ao cliente que buscam identificar feedbacks negativos para ação rápida, entre outros. A amplitude do público-alvo ressalta a utilidade e aplicabilidade abrangente do sistema proposto.
+
+O trabalho está fundamentado em uma revisão detalhada da literatura sobre análise de sentimentos, destacando estudos fundamentais como Taboada (2016), Medhat et al. (2014) e Wankhade et al. (2022). Esses estudos fornecem uma base sólida ao abordar problemas semelhantes, utilizando conjuntos de dados e abordagens analíticas específicos. A revisão destaca a evolução do campo de pesquisa, a variedade de técnicas disponíveis e a importância de considerar o contexto e as características do conjunto de dados. Além disso, a descrição do dataset selecionado fornece uma base concreta, destacando a importância dos atributos Language, Text e Label na análise de sentimentos em tweets.
 
 ## Público-Alvo
 
