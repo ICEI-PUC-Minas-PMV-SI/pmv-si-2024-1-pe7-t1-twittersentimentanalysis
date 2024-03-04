@@ -30,11 +30,27 @@ O público-alvo deste projeto abrange diversas categorias de stakeholders, inclu
 O trabalho está fundamentado em uma revisão detalhada da literatura sobre análise de sentimentos, destacando estudos fundamentais como Taboada (2016), Medhat et al. (2014) e Wankhade et al. (2022). Esses estudos fornecem uma base sólida ao abordar problemas semelhantes, utilizando conjuntos de dados e abordagens analíticas específicos. A revisão destaca a evolução do campo de pesquisa, a variedade de técnicas disponíveis e a importância de considerar o contexto e as características do conjunto de dados. Além disso, a descrição do dataset selecionado fornece uma base concreta, destacando a importância dos atributos Language, Text e Label na análise de sentimentos em tweets.
 
 ## Público-Alvo
+O sistema proposto tem como alvo uma variedade de stakeholders, visando atender às necessidades específicas de diferentes perfis. O público-alvo inclui:
 
-O sistema proposto beneficiará uma ampla gama de stakeholders, incluindo:
-- **Empresas de diversos setores** que coletam feedback textual, como varejo, serviços e plataformas digitais, buscando compreender melhor as percepções dos usuários.
-- **Profissionais de marketing** que necessitam monitorar e analisar sentimentos em relação a marcas e produtos nas redes sociais e outras plataformas digitais.
-- **Equipes de atendimento ao cliente** que buscam identificar e priorizar feedbacks negativos para ação rápida.
+### Empresas de diversos setores
+**Objetivo:** Empresas que coletam feedback textual, como varejo, serviços e plataformas digitais, buscando compreender melhor as percepções dos usuários.<br>
+**Características do Público-Alvo:**
+- Empresas com atuação nacional e internacional.
+- Organizações de todos os tamanhos (pequeno, médio e grande porte).
+- Setores diversificados, como tecnologia, saúde, entretenimento, etc.
+
+### Profissionais de marketing
+**Objetivo:** Profissionais que necessitam monitorar e analisar sentimentos em relação a marcas e produtos nas redes sociais e outras plataformas digitais.<br>
+**Características do Público-Alvo:** 
+- Profissionais com nacionalidades diversas.
+- Faixa etária abrangente, de 20 a 60 anos.
+- Ativos no mercado de marketing e marketing digital.
+
+### Equipes de atendimento ao cliente
+**Objetivo:** Equipes que buscam identificar e priorizar feedbacks negativos para ação rápida.<br>
+**Características do Público-Alvo:**
+- Inclui equipes de atendimento ao cliente em âmbito global.
+- Profissionais envolvidos na gestão de feedbacks e melhoria da experiência do cliente.
 
 ## Estado da arte
 
