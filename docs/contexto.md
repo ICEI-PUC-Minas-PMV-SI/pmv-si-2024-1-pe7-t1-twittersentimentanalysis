@@ -64,12 +64,6 @@ Na revisão da literatura sobre análise de sentimentos, foram identificados tr�
 
 Esses estudos destacam a evolução da análise de sentimentos como campo de pesquisa e a variedade de técnicas disponíveis para abordar o problema da interpretação de sentimentos em textos. Eles sublinham a importância de considerar o contexto específico e as características do conjunto de dados ao escolher uma abordagem analítica, bem como a necessidade de métodos de pré-processamento de dados eficazes para melhorar a precisão da análise de sentimentos.
 
-Referências:
-
-1. TABOADA, Maite. Sentiment analysis: An overview from linguistics. *Annual Review of Linguistics*, v. 2, p. 325-347, 2016.
-2. MEDHAT, Walaa; HASSAN, Ahmed; KORASHY, Hoda. Sentiment analysis algorithms and applications: A survey. *Ain Shams engineering journal*, v. 5, n. 4, p. 1093-1113, 2014.
-3. WANKHADE, Mayur; RAO, Annavarapu Chandra Sekhara; KULKARNI, Chaitanya. A survey on sentiment analysis methods, applications, and challenges. *Artificial Intelligence Review*, v. 55, n. 7, p. 5731-5780, 2022.
-
 # Descrição do dataset selecionado
 
 O dataset em questão é um conjunto de dados de sentimentos, especificamente projetado para a análise de sentimentos em tweets. Este dataset é composto por tweets que foram anotados em quatro categorias diferentes, que incluem 'positivo', 'negativo', 'incerteza' e 'litigioso', permitindo a detecção de diferentes tipos de sentimentos expressos através do texto. Aqui estão os detalhes sobre os atributos disponíveis neste dataset:
@@ -79,8 +73,6 @@ O dataset em questão é um conjunto de dados de sentimentos, especificamente pr
 2. **Text**: Este campo contém o texto do tweet. O conteúdo textual é o componente central deste dataset, pois é a partir dele que os sentimentos são identificados e analisados. Este atributo é do tipo texto e é onde técnicas de processamento de linguagem natural são aplicadas para extrair características relevantes para a análise de sentimentos.
 
 3. **Label**: Este campo indica a categoria de sentimento anotada para cada tweet. As categorias incluem 'positivo', 'negativo', 'incerteza' e 'litigioso', fornecendo uma classificação do sentimento expresso no texto. Este atributo é crucial para treinar modelos de aprendizado de máquina supervisionado, servindo como a variável alvo (ou rótulo) que o modelo tenta prever. Este atributo é do tipo categórico.
-
-O dataset pode ser acessado através do link: [Sentiment Dataset with 1 Million Tweets](https://www.kaggle.com/datasets/tariqsays/sentiment-dataset-with-1-million-tweets/data).
 
 # Canvas analítico
 
@@ -92,12 +84,13 @@ O dataset pode ser acessado através do link: [Sentiment Dataset with 1 Million 
 | **5. Implementation (Implementação)** | **6. Results (Resultados)** | **7. Next Steps (Próximos Passos)** |
 | Desenvolver um pipeline de processamento de dados que inclui limpeza de texto, tokenização, extração de características e modelagem. Implementar e treinar modelos de aprendizado de máquina, como redes neurais ou SVM, usando o conjunto de dados fornecido. | Principais insights incluirão a precisão da classificação de sentimentos, o desempenho do modelo em diferentes categorias de sentimentos e a comparação com modelos existentes. | Ajuste fino dos modelos com base nos resultados obtidos. Exploração de técnicas avançadas de PLN, como word embeddings e modelos de atenção. Planejamento de como incorporar a análise de sentimentos em produtos ou serviços existentes. |
 
-> **Links Úteis**:
-> - [Modelo do Canvas Analítico](https://github.com/ICEI-PUC-Minas-PMV-SI/PesquisaExperimentacao-Template/blob/main/help/Software-Analtics-Canvas-v1.0.pdf)
-
 # Referências
 
 1. DE REZENDE FRANCISCO, Eduardo. Big data analytics e ciencia de dados: pesquisa e tomada de decisao. RAE, v. 57, n. 2, p. 199-200, 2017.
 2. HARRISON, Matt. Machine Learning–Guia de referência rápida: trabalhando com dados estruturados em Python. Novatec Editora, 2019.
 3. RASCHKA, Sebastian; MIRJALILI, Vahid. Python machine learning: Machine learning and deep learning with Python, scikit-learn, and TensorFlow 2. Packt Publishing Ltd, 2019.
 4. GÉRON, Aurélien. Aprende machine learning con scikit-learn, keras y tensorflow. España: Anaya, 2020.
+5. TABOADA, Maite. Sentiment analysis: An overview from linguistics. *Annual Review of Linguistics*, v. 2, p. 325-347, 2016.
+6. MEDHAT, Walaa; HASSAN, Ahmed; KORASHY, Hoda. Sentiment analysis algorithms and applications: A survey. *Ain Shams engineering journal*, v. 5, n. 4, p. 1093-1113, 2014.
+7. WANKHADE, Mayur; RAO, Annavarapu Chandra Sekhara; KULKARNI, Chaitanya. A survey on sentiment analysis methods, applications, and challenges. *Artificial Intelligence Review*, v. 55, n. 7, p. 5731-5780, 2022.
+8. TARIQSAYS. Sentiment Dataset with 1 Million Tweets. Disponível em: [Sentiment Dataset with 1 Million Tweets](https://www.kaggle.com/datasets/tariqsays/sentiment-dataset-with-1-million-tweets/data). Acesso em: 26/02/2024.
