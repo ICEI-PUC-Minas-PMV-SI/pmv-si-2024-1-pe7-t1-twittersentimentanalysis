@@ -56,13 +56,57 @@ O sistema proposto tem como alvo uma variedade de stakeholders, visando atender 
 
 Na revisão da literatura sobre análise de sentimentos, foram identificados três estudos fundamentais que abordam problemas semelhantes ao deste projeto, utilizando conjuntos de dados e abordagens analíticas específicos.
 
-1. **Estudo de Taboada (2016)**: Neste trabalho, Taboada oferece uma visão abrangente da análise de sentimentos do ponto de vista linguístico, enfatizando a importância da interpretação contextual na análise de texto. O estudo não especifica um conjunto de dados único, mas discute várias abordagens e técnicas aplicadas em diferentes contextos, como análises de produtos e críticas de filmes, usando técnicas de PLN para identificar características linguísticas que indicam sentimentos. Este trabalho destaca a diversidade de métodos de análise de sentimentos, desde simples contagens de palavras até abordagens mais complexas baseadas em aprendizado de máquina, como SVM e redes neurais.
+1. **SentimentAnalysis: An Overview from Linguistics - Maite Taboada (2016)**: 
 
-2. **Pesquisa de Medhat et al. (2014)**: Este estudo fornece uma revisão abrangente dos algoritmos e aplicações de análise de sentimentos, cobrindo uma ampla gama de técnicas, desde métodos estatísticos até aprendizado profundo. Os autores discutem a aplicação dessas técnicas em diversos conjuntos de dados, incluindo avaliações de produtos, tweets e textos de fóruns. Eles destacam a utilização de SVM, Naïve Bayes e redes neurais profundas, avaliando seu desempenho com métricas como precisão, recall e medida F1. Os resultados mostram que, embora não exista uma abordagem única que seja superior em todos os contextos, técnicas específicas podem ser mais eficazes dependendo da natureza do conjunto de dados e do objetivo da análise.
+A tese principal do estudo de Taboada se basea em abstrair contexto de um texto(ou parte dele) e determiminar se o mesmo possui subjetividade, caso possua, devemos saber se aquele texto em específico expressa uma opinião positiva ou negativa sobre determinado contexto. Para alcancar tal objetivo, é utilizado principalmente os métodos de Processamento de Linguagem Natural(PLN) e Métodos Léxico-gramática.
 
-3. **Trabalho de Wankhade et al. (2022)**: Este estudo apresenta uma revisão detalhada dos métodos de análise de sentimentos, suas aplicações e desafios associados. Os autores examinam o uso de diversos conjuntos de dados, desde avaliações de e-commerce até postagens em redes sociais, para treinar e testar diferentes modelos de aprendizado de máquina, como árvores de decisão, SVM e redes neurais convolucionais. Eles discutem como a seleção de características e a pré-processamento de dados são cruciais para melhorar o desempenho dos modelos. As métricas de avaliação incluem precisão, recall, medida F1 e acurácia, com os resultados indicando que a eficácia dos modelos pode variar significativamente com base na complexidade do texto e na representação das características.
+O processo de Aprendizado Supervisionado é utilizado, para treinamento é utilizado pedaços de texto em que são identificados os respectivos sentimento, com base nessa pré-modelagem, o modelo é capaz de aprender determinados padrões textuais e quais os sentimentos envolvidos nesse trecho. A classificação final, resulta em valores binários, sendo eles positivos ou negativos, existindo uma pequena ressalva em que pode conter uma terceira opção categorizada como neutra.
 
-Esses estudos destacam a evolução da análise de sentimentos como campo de pesquisa e a variedade de técnicas disponíveis para abordar o problema da interpretação de sentimentos em textos. Eles sublinham a importância de considerar o contexto específico e as características do conjunto de dados ao escolher uma abordagem analítica, bem como a necessidade de métodos de pré-processamento de dados eficazes para melhorar a precisão da análise de sentimentos.
+Também é utilizado o método Léxico-gramática, que se trata de extrair do texto as palavras e relacioná-las com seus significados literais em dicionários, agregando valor para cada palavra, que ao ser colocado em um contexto linguístico, expressa um sentimento positivo ou negativo em relação ao contexto textual. Ao realizar a comparação da palavra com seu significado, é possível determinar quais trechos são importantes ou não, para gerar valor ao modelo, como recurso a ser utilizado.
+
+Um exemplar, para como os recursos eram identifcados no método Léxico-gramática, apresentado pela autora:
+
+|                |Subjetividade(dicionário)|SO-CAL|
+|----------------|-------------------------------|-----------------------------|
+|good|`Positivo(fraco)`|3|
+|excellent|`Positivo(forte)`|5|
+|bad|`Negativo(fraco)`|-3|
+|terrible|`Negativo(forte)`|-5|
+
+Também é utilizado o "Semantic Orientation Calculator(SO-CAL)", que determina em uma escala de 10 pontos, iniciados em -5 à +5, que indicia valores semânticos às expressões linguísticas de um texto, utilizado no estudo dirigido por Taboada, para agregação de valor ao modelo treinado.
+
+O dataset escolhido não é informado em detalhes, mas é explicitado que muito da pesquisa foi focado na realização de análise de reviews de filmes, livros e opinião de compradores de determinados produtos, baseados no estudos de Daveetal(2003), Hu & Liu(2004), Kennedy & Inkpen(2006), Turney(2002). O estudo é conduzido em Inglês.
+
+2. **A survey on sentiment analysis methods, applications, and challenges(2022) - Mayur Wankhade, Annavarapu Chandra Sekhara Rao e Chaitanya Kulkarni (2022)**: 
+
+Este estudo apresenta uma revisão detalhada dos métodos de análise de sentimentos, suas aplicações e desafios associados. Os autores examinam o uso de diversos conjuntos de dados.
+Os principais pontos destacados em relação à coleta de recursos foram os seguintes pontos: 
+
+- Análise Sentimental em documentos:
+Nesse nível é realizado a análise contextual de todo o documento e considerado o documento como sendo um único nível de sentimento. Sendo este o menos utilizado.
+
+- Análise sentimental em sentenças textuais:
+Nesse nível é realizado a análise contextual de cada sentença utilizada como recurso, para cada sentença é considerado um único nível de sentimento.
+
+- Análise sentimental em frases textuais:
+Nesse nível é realizado a análise contextual de determinadas palavras presentes em frases textuais, que podem dar um sentido conotativo específico para o texto, para cada frase analisada é considerado um dois nives sentimentais, em que é determinado para qual das duas possibilidades o texto mais se aproxima.
+
+- Análise sentimental em nível de aspecto:
+É considerado o aspecto de todo o recurso disponibilizado, mesmo que acha sentidos conotativos propensos para determinado sentimento, por exemplo, possuir uma palavra negativa, essa palavra somente influenciará no resultado caso todo o contexto seja negativo.
+
+Foi utilizado um dataset próprio para o estudo, gerado a partir de web scrapping, majoritariamente em redes sociais, fóruns, blogs web e e-commerces, realizando diversos métodos de filtragem dos textos antes do processamento textual. Os autores destacam o avanço para técnicas de aprendizado profundo, como redes neurais convolucionais (CNNs) e redes neurais recorrentes (RNNs), e modelagems em Processamento de Linguagem Natural Hibridas, conforme descreve o autor, que se mostraram eficazes na compreensão de sequências de texto e contextos semânticos, sendo uma delas o SVM por exemplo.
+
+O estudo foi conduzido em inglês assim como os recursos utilizados, o método que garantiu uma acurácia maior foi o de **Support Vector Machine(SVM)** em distintas gerações de treinamentos realizadas, garantindo entre **76,68% à 98% de precisão**.
+
+SVM, ou Support Vector Machine, é um algoritmo de aprendizado de máquina supervisionado usado para classificação e regressão. A ideia principal por trás do SVM é encontrar o hiperplano que melhor separa as classes no espaço de características, sendo este, uma linha ou superfície que divide um espaço em duas partes, maximizando a distância entre os pontos de dados mais próximos de cada classe.
+
+3. **Sentiment analysis algorithms and applications: A survey - Walaa Medhat, Ahmed Hassanb, Hoda Korashy (2014)**:
+
+Medhat e colaboradores detalham algoritmos divididos em categorias: métodos de aprendizado de máquina, método léxico-gramática e métodos híbridos. Entre os algoritmos de aprendizado de máquina, destacam-se Naive Bayes, Máquinas de Vetores de Suporte (SVM) e redes neurais, com um interesse particular nos resultados promissores das técnicas de aprendizado profundo para capturar contextos complexos.
+
+Embora não especifiquem datasets, a revisão sugere a importância de se utilizar várias fontes de dados para validar a robustez dos algoritmos, incluindo revisões de produtos, comentários em mídias sociais e opiniões em fóruns. O artigo serve como uma survey abrangente, referenciando múltiplos estudos chave que moldaram a evolução da análise de sentimentos.
+
+Destaca a dificuldade de análise em textos com sarcasmo, ironia e expressões idiomáticas, além da dependência de domínio dos modelos, que podem não generalizar bem entre diferentes contextos. Também enfatiza a importância do aprendizado profundo e do processamento de linguagem natural para superar limitações atuais, apontando para o potencial dos modelos de linguagem pré-treinados e análise multilíngue.
 
 # Descrição do dataset selecionado
 
