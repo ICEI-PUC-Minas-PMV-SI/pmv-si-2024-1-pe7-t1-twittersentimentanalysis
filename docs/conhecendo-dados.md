@@ -10,7 +10,7 @@ O conjunto de dados contém 937.854 linhas e 3 colunas: `Text`, `Language` e `La
 Gráfico: Distribuição de Idiomas x Quantidade de Tweets
 Tipo: Gráfico de barras
 
-![Distribuição de Idiomas x Quantidade de Tweets](/img/distribuicao_idiomas_x_quantidade_twittes.png)
+![Distribuição de Idiomas x Quantidade de Tweets](img/distribuicao_idiomas_x_quantidade_twittes.png)
 
 ```
 
