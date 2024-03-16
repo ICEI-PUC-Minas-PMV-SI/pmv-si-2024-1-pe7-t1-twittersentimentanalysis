@@ -9,6 +9,7 @@ O conjunto de dados contém 937.854 linhas e 3 colunas: `Text`, `Language` e `La
 ```
 Gráfico: Distribuição de Idiomas x Quantidade de Tweets
 Tipo: Gráfico de barras
+
 ```
 ![Distribuição de Idiomas x Quantidade de Tweets](img/distribuicao_idiomas_x_quantidade_twittes.png)
 
@@ -18,9 +19,8 @@ O gráfico de barras acima mostra a distribuição de idiomas no conjunto de dad
 Gráfico: Distribuição de Rótulos
 Tipo: Gráfico de barras
 
-![Distribuição de Rótulos](/img/distribuicao_rotulos.png)
-
 ```
+![Distribuição de Rótulos](img/distribuicao_rotulos.png)
 
 Este gráfico de barras apresenta a distribuição dos rótulos no conjunto de dados. Observamos que os rótulos estão relativamente equilibrados, com uma quantidade semelhante de tweets classificados como "positive", "negative", "litigious" e "uncertainty".
 
@@ -39,9 +39,8 @@ Como etapa adicional de engenharia de recursos, criamos duas novas colunas: `Tex
 Gráfico: Distribuição de Idiomas x Quantidade de Tweets
 Tipo: Gráfico de barras
 
-![Distribuição de Idiomas x Quantidade de Tweets](img/distribuicao_idiomas_x_quantidade_twittes.png)
-
 ```
+![Distribuição de Idiomas x Quantidade de Tweets](img/distribuicao_idiomas_x_quantidade_twittes.png)
 
 Este gráfico reforça a observação anterior de que o inglês é o idioma predominante no conjunto de dados.
 
@@ -49,9 +48,8 @@ Este gráfico reforça a observação anterior de que o inglês é o idioma pred
 Gráfico: Distribuição de Rótulos
 Tipo: Gráfico de barras
 
-![Distribuição de Rótulos](/img/distribuicao_rotulos.png)
-
 ```
+![Distribuição de Rótulos](img/distribuicao_rotulos.png)
 
 Novamente, observamos que os rótulos estão relativamente equilibrados, o que é uma característica desejável para a análise de sentimentos.
 
@@ -61,9 +59,8 @@ Novamente, observamos que os rótulos estão relativamente equilibrados, o que �
 Gráfico: Relação entre Rótulos e Idiomas
 Tipo: Gráfico de barras empilhadas
 
-![Relação entre Rótulos e Idiomas](/img/relacao_entre_rotulos_idiomas.png)
-
 ```
+![Relação entre Rótulos e Idiomas](img/relacao_entre_rotulos_idiomas.png)
 
 Este gráfico de barras empilhadas nos permite explorar a relação entre os rótulos e os idiomas. Podemos observar que alguns idiomas apresentam uma distribuição mais equilibrada de rótulos, enquanto outros têm uma predominância de um ou dois rótulos específicos.
 
@@ -71,9 +68,8 @@ Este gráfico de barras empilhadas nos permite explorar a relação entre os ró
 Gráfico: Relação entre Comprimento do Texto e Contagem de Palavras
 Tipo: Gráfico de dispersão
 
-![Relação entre Rótulos e Idiomas](/img/relacao_comprimento_texto_contagem_palavras.png)
-
 ```
+![Relação entre Rótulos e Idiomas](img/relacao_comprimento_texto_contagem_palavras.png)
 
 O gráfico de dispersão acima mostra a relação entre o comprimento do texto limpo e a contagem de palavras, com os pontos coloridos de acordo com o rótulo. É possível observar uma correlação positiva entre essas duas variáveis, o que é esperado, pois textos mais longos tendem a ter mais palavras.
 
@@ -113,9 +109,8 @@ Como próxima etapa, removemos as stopwords em inglês dos textos limpos, utiliz
 Gráfico: Distribuição dos Sentimentos nos Textos em Inglês
 Tipo: Gráfico de barras
 
-![Distribuição dos Sentimentos nos Textos em Inglês](/img/distribuicao_sentimentos_textos_ingles.png)
-
 ```
+![Distribuição dos Sentimentos nos Textos em Inglês](img/distribuicao_sentimentos_textos_ingles.png)
 
 Este gráfico de barras reforça o balanceamento entre os rótulos "positive" e "negative" após a filtragem dos dados.
 
@@ -127,9 +122,8 @@ Uma Word Cloud é uma representação visual das palavras mais frequentes em um 
 Gráfico: Word Cloud para Texto Limpo em Inglês
 Tipo: Word Cloud
 
-![Word Cloud para Texto Limpo em Inglês](/img/word_cloud_texto_ingles.png)
-
 ```
+![Word Cloud para Texto Limpo em Inglês](img/word_cloud_texto_ingles.png)
 
 A Word Cloud acima mostra as palavras mais frequentes nos textos em inglês, sem distinção de sentimento.
 
@@ -137,16 +131,15 @@ A Word Cloud acima mostra as palavras mais frequentes nos textos em inglês, sem
 Gráfico: Palavras Mais Frequentes em Tweets Positivos
 Tipo: Word Cloud
 
-![Word Cloud para Texto Limpo em Inglês](/img/word_cloud_texto_ingles_positivo.png)
-
 ```
+![Word Cloud para Texto Limpo em Inglês](img/word_cloud_texto_ingles_positivo.png)
 
 ```
 Gráfico: Palavras Mais Frequentes em Tweets Negativos
 Tipo: Word Cloud
 
-![Word Cloud para Texto Limpo em Inglês](/img/word_cloud_texto_ingles_negativo.png)
 ```
+![Word Cloud para Texto Limpo em Inglês](img/word_cloud_texto_ingles_negativo.png)
 
 As Word Clouds separadas para tweets positivos e negativos nos permitem comparar as palavras mais proeminentes em cada sentimento, fornecendo insights sobre os tópicos e contextos comuns em cada categoria.
 
@@ -156,9 +149,8 @@ As Word Clouds separadas para tweets positivos e negativos nos permitem comparar
 Gráfico: Boxplot do Comprimento dos Textos em Inglês
 Tipo: Boxplot
 
-![Boxplot do Comprimento dos Textos em Inglês](/img/boxblot_comprimento_texto_ingles.png)
-
 ```
+![Boxplot do Comprimento dos Textos em Inglês](img/boxblot_comprimento_texto_ingles.png)
 
 O boxplot acima mostra a distribuição do comprimento dos textos em inglês. Podemos identificar outliers e observar a variabilidade geral no comprimento dos textos.
 
@@ -168,9 +160,8 @@ O boxplot acima mostra a distribuição do comprimento dos textos em inglês. Po
 Gráfico: Top 20 Palavras Mais Frequentes
 Tipo: Gráfico de barras
 
-![Top 20 Palavras Mais Frequentes](/img/top_20_palavras_frequentes_ingles.png)
-
 ```
+![Top 20 Palavras Mais Frequentes](img/top_20_palavras_frequentes_ingles.png)
 
 Este gráfico de barras apresenta as 20 palavras mais frequentes nos textos em inglês. Essa análise pode fornecer insights sobre os tópicos e contextos mais comuns presentes no conjunto de dados.
 
@@ -180,9 +171,8 @@ Este gráfico de barras apresenta as 20 palavras mais frequentes nos textos em i
 Gráfico: Comprimento dos Textos por Sentimento
 Tipo: Boxplot
 
-![Comprimento dos Textos por Sentimento](/img/comprimento_texto_sentimento.png)
-
 ```
+![Comprimento dos Textos por Sentimento](img/comprimento_texto_sentimento.png)
 
 Este boxplot explora a relação entre o sentimento dos textos (positivo ou negativo) e o comprimento do texto. Podemos observar se existe uma tendência de textos mais longos ou mais curtos serem associados a um sentimento específico.
 
@@ -192,8 +182,8 @@ Este boxplot explora a relação entre o sentimento dos textos (positivo ou nega
 Gráfico: Top 20 Bigramas Mais Frequentes
 Tipo: Gráfico de barras
 
-![Top 20 Bigramas Mais Frequentes](/img/top_20_bigramas_mais_frequentes.png)
 ```
+![Top 20 Bigramas Mais Frequentes](img/top_20_bigramas_mais_frequentes.png)
 
 A análise de bigramas e trigramas nos permite identificar as combinações mais comuns de duas ou três palavras nos textos. Este gráfico de barras mostra os 20 bigramas mais frequentes, o que pode fornecer insights sobre os contextos e tópicos específicos presentes nos dados.
 
@@ -203,8 +193,8 @@ A análise de bigramas e trigramas nos permite identificar as combinações mais
 Gráfico: Distribuição de Densidade do Comprimento dos Textos
 Tipo: Gráfico de densidade
 
-![Distribuição de Densidade do Comprimento dos Textos](/img/distribuicao_densidade_compromento_textos.png)
 ```
+![Distribuição de Densidade do Comprimento dos Textos](img/distribuicao_densidade_compromento_textos.png)
 
 O gráfico de densidade complementa a análise do comprimento dos textos, fornecendo uma visualização mais detalhada da distribuição subjacente dos dados. Isso pode ajudar a identificar eventuais desvios ou assimetrias na distribuição.
 
