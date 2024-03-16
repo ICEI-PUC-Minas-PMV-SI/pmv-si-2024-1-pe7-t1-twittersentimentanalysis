@@ -41,7 +41,7 @@ Como etapa adicional de engenharia de recursos, criamos duas novas colunas: `Tex
 Gráfico: Distribuição de Idiomas x Quantidade de Tweets
 Tipo: Gráfico de barras
 
-![Distribuição de Idiomas x Quantidade de Tweets](/img/distribuicao_idiomas_x_quantidade_twittes.png)
+![Distribuição de Idiomas x Quantidade de Tweets](img/distribuicao_idiomas_x_quantidade_twittes.png)
 
 ```
 
