@@ -22,6 +22,47 @@ Abaixo está a estrutura do conjunto de dados:
 - A coluna **Label**, é responsável por categorizar os textos com seus respectivos sentimentos, possuímos 4 tipos de classificações possíveis, são elas:
 > `litigious`, `negative`, `positive` e     `uncertainty`.
 
+## Limpeza e Preparação dos Dados
+
+Antes de avançarmos com a análise, conduzimos uma etapa de pré-processamento dos dados, na qual removemos URLs, menções, hashtags e caracteres especiais dos textos usando expressões regulares.
+
+```python 
+# Aplicando a limpeza de texto na coluna 'Language'. Foram encontrados links de imagens, o que não é relevante para a análise
+df['Language'] = df['Language'].astype(str).apply(clean_text)
+
+df.drop(df[df['Language'].astype(str).apply(lambda x: len(x) > 3)].index, inplace=True)
+```
+
+> Uma expressão regular, também conhecida como regex, é uma sequência de caracteres que define um padrão de busca em textos. Ao usar expressões regulares, você pode realizar operações como encontrar padrões específicos em um texto, validar se uma string está formatada corretamente, extrair partes específicas de um texto, substituir partes de um texto por outras e muito mais.
+
+Adicionalmente, foi gerada uma nova coluna chamada `Clean_Text`, que contém o texto do Tweet limpo.
+
+```python 
+# Aplicando a limpeza de texto na coluna 'Text' para remover URLs, menções, hashtags, caracteres especiais e números
+df['Clean_Text'] = df['Text'].astype(str).apply(clean_text)
+```
+
+Além disso, tratamos valores ausentes na coluna `Language`, preenchendo-os com uma string vazia, e removemos duplicatas do conjunto de dados.
+
+```python 
+# Tratando valores ausentes na coluna 'Language', preenchendo com vazio ('') para evitar problemas na análise de texto
+df['Language'].fillna('', inplace=True)
+
+# Remoção de duplicatas
+df.drop_duplicates(inplace=True)
+```
+
+Como etapa adicional de engenharia de recursos, criamos duas novas colunas: `Text_Length` e `Word_Count`, que representam o comprimento do texto limpo e a contagem de palavras, respectivamente.
+
+```python 
+# Feature Engineering: Criando novas features com base no texto limpo 
+# Contagem de palavras e comprimento do texto
+df['Text_Length'] = df['Clean_Text'].apply(len)
+df['Word_Count'] = df['Clean_Text'].apply(lambda x: len(x.split()))  
+```
+
+Com o conjunto de dado, devidamente tratado, partimos para a etapa de análise do data set selecionado.
+
 ## Análise Univariada
 
 O gráfico abaixo ilustra a distribuição da quantidade de tweets por idioma, considerando os 5 idiomas com mais informações no conjunto de dados.
@@ -34,23 +75,10 @@ Para gerar essas informações, foi realizada a análise exploratório de dados(
 
 Esse método, consiste em se concentrar na análise de uma única variável por vez. Em outras palavras, ela examina as características e distribuição de uma variável isoladamente, sem considerar sua relação com outras variáveis. Neste caso, é utilizado a informação do idioma, para calcular sua respectiva quantidade de tweets.
 
-```
-Gráfico: Distribuição de Rótulos
-Tipo: Gráfico de barras
+Utilizando o mesmo processo de análise, o gráfico abaixo ilustra a distribuição dos rótulos no conjunto de dados.
 
-```
 ![Distribuição de Rótulos](img/distribuicao_rotulos.png)
-
-Este gráfico de barras apresenta a distribuição dos rótulos no conjunto de dados. Observamos que os rótulos estão relativamente equilibrados, com uma quantidade semelhante de tweets classificados como "positive", "negative", "litigious" e "uncertainty".
-
-
-## Limpeza e Preparação dos Dados
-
-Antes de prosseguir com a análise, realizamos uma etapa de limpeza e preparação dos dados. Removemos URLs, menções, hashtags e caracteres especiais dos textos, utilizando expressões regulares. Também criamos uma nova coluna `Clean_Text` contendo o texto limpo.
-
-Além disso, tratamos valores ausentes na coluna `Language`, preenchendo-os com uma string vazia, e removemos duplicatas do conjunto de dados.
-
-Como etapa adicional de engenharia de recursos, criamos duas novas colunas: `Text_Length` e `Word_Count`, que representam o comprimento do texto limpo e a contagem de palavras, respectivamente.
+>*Gráfico: Distribuição de Rótulos*
 
 ## Análise Bivariada
 
@@ -79,39 +107,6 @@ Para identificar outliers no comprimento dos textos, utilizamos os quantis 0.05 
 Identificamos 88.239 outliers com base no comprimento do texto. Ao analisar a distribuição desses outliers por rótulo, observamos que a maioria pertence às categorias "negative" e "positive".
 
 Posteriormente, removemos os outliers do conjunto de dados, mantendo apenas 5% dos dados com menor e maior comprimento de texto.
-
-## Análise de Balanceamento de Rótulos por Idioma
-
-Realizamos uma análise detalhada do balanceamento de rótulos por idioma, calculando a proporção de cada rótulo para cada idioma presente no conjunto de dados.
-
-Observamos que alguns idiomas apresentam uma distribuição relativamente equilibrada de rótulos, enquanto outros têm uma predominância significativa de um ou dois rótulos específicos. Essa análise pode ser importante para avaliar a necessidade de técnicas de balanceamento de dados ou estratégias de treinamento específicas para determinados idiomas.
-
-## Seleção de Dados para Análise Adicional
-
-Com base nos insights obtidos, decidimos focar nossa análise adicional apenas em postagens em inglês com rótulos "positive" e "negative". Essa escolha foi motivada por várias razões:
-
-1. **Padronização Linguística**: O inglês é amplamente utilizado em dados de mídia social e fornece uma base consistente para análise, minimizando a complexidade associada ao processamento de múltiplos idiomas.
-
-2. **Disponibilidade de Ferramentas**: Existem muitas bibliotecas e ferramentas de processamento de linguagem natural (PLN) otimizadas para o inglês, facilitando a aplicação de técnicas avançadas.
-
-3. **Análise de Sentimentos Claramente Definida**: Os rótulos "positive" e "negative" representam sentimentos claramente definidos e opostos, tornando-os ideais para uma análise de sentimentos binária.
-
-4. **Relevância e Aplicabilidade**: Focar em postagens positivas e negativas permite identificar tendências e padrões significativos no sentimento do público, o que é valioso para organizações e pesquisadores.
-
-Após a seleção, verificamos que o conjunto de dados filtrado contém 247.254 tweets positivos e 243.139 tweets negativos, representando um balanceamento adequado para a análise.
-
-## Remoção de Stopwords
-
-Como próxima etapa, removemos as stopwords em inglês dos textos limpos, utilizando a lista fornecida pela biblioteca NLTK. Essa etapa é importante para reduzir o ruído nos dados e focar nas palavras mais significativas.
-
-```
-Gráfico: Distribuição dos Sentimentos nos Textos em Inglês
-Tipo: Gráfico de barras
-
-```
-![Distribuição dos Sentimentos nos Textos em Inglês](img/distribuicao_sentimentos_textos_ingles.png)
-
-Este gráfico de barras reforça o balanceamento entre os rótulos "positive" e "negative" após a filtragem dos dados.
 
 ## Word Cloud
 
@@ -199,6 +194,10 @@ O gráfico de densidade complementa a análise do comprimento dos textos, fornec
 
 ## Descrição dos Achados
 
+Realizamos uma análise detalhada do balanceamento de rótulos por idioma, calculando a proporção de cada rótulo para cada idioma presente no conjunto de dados.
+
+Observamos que alguns idiomas apresentam uma distribuição relativamente equilibrada de rótulos, enquanto outros têm uma predominância significativa de um ou dois rótulos específicos. Essa análise pode ser importante para avaliar a necessidade de técnicas de balanceamento de dados ou estratégias de treinamento específicas para determinados idiomas.
+
 A partir da análise descritiva e exploratória realizada, destacamos os seguintes achados relevantes:
 
 1. O conjunto de dados original apresentava um equilíbrio razoável entre os diferentes rótulos ("positive", "negative", "litigious" e "uncertainty"), o que é uma característica desejável para a análise de sentimentos.
@@ -207,17 +206,23 @@ A partir da análise descritiva e exploratória realizada, destacamos os seguint
 
 3. Após a limpeza e preparação dos dados, identificamos outliers com base no comprimento do texto. Esses outliers foram removidos para evitar que influenciassem negativamente a análise.
 
-4. A análise de balanceamento de rótulos por idioma revelou que alguns idiomas apresentavam uma distribuição mais equilibrada, enquanto outros tinham uma predominância significativa de um ou dois rótulos específicos.
+4. A análise de balanceamento de rótulos por idioma revelou que alguns idiomas apresentavam uma distribuição mais equilibrada, enquanto outros tinham uma predominância significativa de um ou dois rótulos específicos. 
 
 5. Para a análise adicional, selecionamos tweets em inglês com rótulos "positive" e "negative", uma vez que esses rótulos representam sentimentos claramente definidos e opostos, além de facilitar o uso de ferramentas de PLN otimizadas para o inglês.
 
-6. As Word Clouds nos permitiram identificar visualmente as palavras mais proeminentes nos tweets positivos e negativos, fornecendo insights sobre os tópicos e contextos comuns em cada sentimento.
+6. A análise de frequência de palavras e bigramas complementou os insights obtidos pelas Word Clouds, quantificando as palavras e combinações mais frequentes nos textos.
 
-7. A análise de frequência de palavras e bigramas complementou os insights obtidos pelas Word Clouds, quantificando as palavras e combinações mais frequentes nos textos.
+7. A análise de densidade e distribuição do comprimento dos textos revelou a distribuição subjacente dos dados, permitindo identificar eventuais desvios ou assimetrias.
 
-8. Exploramos a relação entre o comprimento do texto e o sentimento, observando se havia uma tendência de textos mais longos ou mais curtos serem associados a um sentimento específico.
+Com base nos insights obtidos, decidimos focar nossa análise adicional apenas em postagens em inglês com rótulos "positive" e "negative". Essa escolha foi motivada por várias razões:
 
-9. A análise de densidade e distribuição do comprimento dos textos revelou a distribuição subjacente dos dados, permitindo identificar eventuais desvios ou assimetrias.
+1. **Padronização Linguística**: O inglês é amplamente utilizado em dados de mídia social e fornece uma base consistente para análise, minimizando a complexidade associada ao processamento de múltiplos idiomas.
+
+2. **Disponibilidade de Ferramentas**: Existem muitas bibliotecas e ferramentas de processamento de linguagem natural (PLN) otimizadas para o inglês, facilitando a aplicação de técnicas avançadas.
+
+3. **Análise de Sentimentos Claramente Definida**: Os rótulos "positive" e "negative" representam sentimentos claramente definidos e opostos, tornando-os ideais para uma análise de sentimentos binária.
+
+4. **Relevância e Aplicabilidade**: Focar em postagens positivas e negativas permite identificar tendências e padrões significativos no sentimento do público, o que é valioso para organizações e pesquisadores.
 
 Esses achados fornecem uma compreensão sólida sobre a estrutura e características do conjunto de dados, preparando-nos para etapas subsequentes de análise e modelagem.
 
