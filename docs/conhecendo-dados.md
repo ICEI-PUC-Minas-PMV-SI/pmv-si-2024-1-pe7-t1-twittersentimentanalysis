@@ -67,6 +67,8 @@ Com o conjunto de dado, devidamente tratado, partimos para a etapa de análise d
 
 O gráfico abaixo ilustra a distribuição da quantidade de tweets por idioma, considerando os 5 idiomas com mais informações no conjunto de dados.
 
+> **Nota**: Selecionamos os 5 principais idiomas para gerar o gráfico abaixo, devido à disparidade das informações apresentadas nos demais idiomas, as quais têm um impacto mínimo na análise subsequente.
+
 ![Distribuição de Quantidade de Tweets x Idiomas](img/distribuicao_idiomas_x_quantidade_twittes.png)
 
 >*Gráfico: Distribuição de Quantidade de Tweets x Idiomas*
