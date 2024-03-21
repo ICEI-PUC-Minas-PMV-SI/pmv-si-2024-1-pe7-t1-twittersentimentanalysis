@@ -1,19 +1,38 @@
 # Conhecendo os Dados
 
-Nesta seção, apresentaremos uma análise detalhada e exploratória dos dados, com o objetivo de compreender sua estrutura, identificar possíveis outliers e avaliar as relações entre as variáveis analisadas. Utilizaremos medidas de tendência central, dispersão, gráficos e técnicas adequadas para obter insights valiosos sobre o conjunto de dados.
+Nesta seção, apresentaremos uma análise detalhada e exploratória dos dados, com o objetivo de compreender sua estrutura, identificar possíveis outliers e avaliar as relações entre as variáveis analisadas.
+
+Faremos uso de medidas de tendência central, dispersão, gráficos e técnicas apropriadas para obter insights significativos sobre o conjunto de dados.
 
 ## Estrutura dos Dados
 
-O conjunto de dados contém 937.854 linhas e 3 colunas: `Text`, `Language` e `Label`. A coluna `Text` contém o conteúdo dos tweets, incluindo URLs, menções e hashtags. A coluna `Language` indica o idioma em que o tweet foi escrito, utilizando códigos de idioma. A coluna `Label` classifica os tweets em categorias como "litigious", "negative", "positive" e "uncertainty".
+O conjunto de dados selecionado foi o *"Sentiment Dataset with 1 Million Tweets - MUHAMMAD TARIQ"*, o data set conta com um um total de **9378.854 linhas**, organizadas em **3 colunas**, sendo desses **929.544 valores únicos por colunas**, mas também conta com um débito de **23 linguagens sem dados informados**.
+Abaixo está a estrutura do conjunto de dados:
 
-```
-Gráfico: Distribuição de Idiomas x Quantidade de Tweets
-Tipo: Gráfico de barras
+|  |Text|Language|Label|
+|--|----|--------|-----|
+|0|@Charlie_Corley @Kristine1G @amyklobuchar @Sty...|en|`litigious`|
+|1|`https://t.co/YJNiO0p1JV` Flagstar Bank disclose...|en|`negative`|
+|2|Rwanda is set to host the headquarters of Unit...|en|`positive`|
 
-```
-![Distribuição de Idiomas x Quantidade de Tweets](img/distribuicao_idiomas_x_quantidade_twittes.png)
+- A coluna **Text**, representa o conteúdo dos tweets, neles estão inclusos URL´s, menções e hashtags, por se tratar de um texto a priori sem polimento.
 
-O gráfico de barras acima mostra a distribuição de idiomas no conjunto de dados. A maioria dos tweets está em inglês (`en`), seguido por francês (`fr`), espanhol (`es`) e português (`pt`).
+- A coluna **Language**, indica o idioma em que o tweet correponde foi escrito, no dataset selecionado, possuímos diversos idiomas, mas a maior ocorrência de amostral está no idioma en - Inglês.
+
+- A coluna **Label**, é responsável por categorizar os textos com seus respectivos sentimentos, possuímos 4 tipos de classificações possíveis, são elas:
+> `litigious`, `negative`, `positive` e     `uncertainty`.
+
+## Análise Univariada
+
+O gráfico abaixo ilustra a distribuição da quantidade de tweets por idioma, considerando os 5 idiomas com mais informações no conjunto de dados.
+
+![Distribuição de Quantidade de Tweets x Idiomas](img/distribuicao_idiomas_x_quantidade_twittes.png)
+
+>*Gráfico: Distribuição de Quantidade de Tweets x Idiomas*
+
+Para gerar essas informações, foi realizada a análise exploratório de dados(AED), Univariada com gráficos.
+
+Esse método, consiste em se concentrar na análise de uma única variável por vez. Em outras palavras, ela examina as características e distribuição de uma variável isoladamente, sem considerar sua relação com outras variáveis. Neste caso, é utilizado a informação do idioma, para calcular sua respectiva quantidade de tweets.
 
 ```
 Gráfico: Distribuição de Rótulos
@@ -32,26 +51,6 @@ Antes de prosseguir com a análise, realizamos uma etapa de limpeza e preparaç�
 Além disso, tratamos valores ausentes na coluna `Language`, preenchendo-os com uma string vazia, e removemos duplicatas do conjunto de dados.
 
 Como etapa adicional de engenharia de recursos, criamos duas novas colunas: `Text_Length` e `Word_Count`, que representam o comprimento do texto limpo e a contagem de palavras, respectivamente.
-
-## Análise Univariada
-
-```
-Gráfico: Distribuição de Idiomas x Quantidade de Tweets
-Tipo: Gráfico de barras
-
-```
-![Distribuição de Idiomas x Quantidade de Tweets](img/distribuicao_idiomas_x_quantidade_twittes.png)
-
-Este gráfico reforça a observação anterior de que o inglês é o idioma predominante no conjunto de dados.
-
-```
-Gráfico: Distribuição de Rótulos
-Tipo: Gráfico de barras
-
-```
-![Distribuição de Rótulos](img/distribuicao_rotulos.png)
-
-Novamente, observamos que os rótulos estão relativamente equilibrados, o que é uma característica desejável para a análise de sentimentos.
 
 ## Análise Bivariada
 
