@@ -6,7 +6,7 @@
  </div>
 
 <p align="center">
- Sistema de análise de sentimentos, utilizando técnicas de processamento de linguagem natural (PLN) e aprendizado de máquina, baseadoi em oferta de insights a partir de grandes volumes de dados textuais.
+ Sistema de análise de sentimentos, utilizando técnicas de processamento de linguagem natural (PLN) e aprendizado de máquina, baseado em oferta de insights a partir de grandes volumes de dados textuais.
 </p>
 
 <div align="center">
