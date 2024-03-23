@@ -248,17 +248,15 @@ A partir da análise descritiva e exploratória realizada, destacamos os seguint
 
 6. A análise de densidade e distribuição do comprimento dos textos revelou a distribuição subjacente dos dados, permitindo identificar eventuais desvios ou assimetrias.
 
-Com base nos insights obtidos, decidimos focar nossa análise adicional apenas em postagens em inglês com rótulos "positive" e "negative". Essa escolha foi motivada por várias razões:
+Com base nos insights obtidos, decidimos focar nossa análise adicional apenas em postagens em inglês. Essa escolha foi motivada por várias razões:
 
 1. **Padronização Linguística**: O inglês é amplamente utilizado em dados de mídia social e fornece uma base consistente para análise, minimizando a complexidade associada ao processamento de múltiplos idiomas.
 
 2. **Disponibilidade de Ferramentas**: Existem muitas bibliotecas e ferramentas de processamento de linguagem natural (PLN) otimizadas para o inglês, facilitando a aplicação de técnicas avançadas.
 
-3. **Análise de Sentimentos Claramente Definida**: Os rótulos "positive" e "negative" representam sentimentos claramente definidos e opostos, tornando-os ideais para uma análise de sentimentos binária.
+3. **Amostragem de dados consistente**: 
 
-4. **Relevância e Aplicabilidade**: Focar em postagens positivas e negativas permite identificar tendências e padrões significativos no sentimento do público, o que é valioso para organizações e pesquisadores.
-
-Esses achados fornecem uma compreensão sólida sobre a estrutura e características do conjunto de dados, preparando-nos para etapas subsequentes de análise e modelagem.
+O conjunto de dados teve uma coleta de amostras mais confiável em inglês, o que o torna mais seguro e eficaz quando aplicado especificamente nesse idioma em comparação com todos os outros no conjunto de dados. Isso é válido até mesmo para a extração de dados e análises.
 
 ## Ferramentas Utilizadas
 
