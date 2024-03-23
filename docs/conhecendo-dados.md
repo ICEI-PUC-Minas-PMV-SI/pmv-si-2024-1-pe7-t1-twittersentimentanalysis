@@ -84,115 +84,149 @@ Utilizando o mesmo processo de análise, o gráfico abaixo ilustra a distribuiç
 
 ## Análise Bivariada
 
-```
-Gráfico: Relação entre Rótulos e Idiomas
-Tipo: Gráfico de barras empilhadas
+O gráfico abaixo ilustra a relação entre rótulos/labels e os idiomas, considerando os 5 idiomas com mais informações no conjunto de dados.
 
-```
+> **Nota**: Podemos observar que, no gráfico, os rótulos que indicam a quantidade de valores estão visíveis apenas para o idioma Inglês, enquanto para os outros idiomas não estão. Devido à grande disparidade nos valores, decidimos remover os rótulos dos outros idiomas para manter a clareza e evitar poluição visual do gráfico.
+
 ![Relação entre Rótulos e Idiomas](img/relacao_entre_rotulos_idiomas.png)
+>Gráfico: Relação entre Rótulos e Idiomas
 
-Este gráfico de barras empilhadas nos permite explorar a relação entre os rótulos e os idiomas. Podemos observar que alguns idiomas apresentam uma distribuição mais equilibrada de rótulos, enquanto outros têm uma predominância de um ou dois rótulos específicos.
+É possível observar que alguns idiomas apresentam uma distribuição mais equilibrada de rótulos, enquanto outros têm uma predominância de um ou dois rótulos específicos
 
-```
-Gráfico: Relação entre Comprimento do Texto e Contagem de Palavras
-Tipo: Gráfico de dispersão
+Para gerar essas informações, foi realizada a análise exploratório de dados(AED), Bivariada com gráficos.
 
-```
-![Relação entre Rótulos e Idiomas](img/relacao_comprimento_texto_contagem_palavras.png)
+Uma análise bivariada é uma técnica estatística usada para examinar a relação entre duas variáveis. Isso significa que você está interessado em entender como uma variável se comporta em relação à outra.
 
-O gráfico de dispersão acima mostra a relação entre o comprimento do texto limpo e a contagem de palavras, com os pontos coloridos de acordo com o rótulo. É possível observar uma correlação positiva entre essas duas variáveis, o que é esperado, pois textos mais longos tendem a ter mais palavras.
+O objetivo é entender se há uma associação entre as duas variáveis e, em caso afirmativo, qual é a natureza dessa associação (positiva, negativa, fraca, forte, etc.).
+
+Utilizando o mesmo processo de análise, o gráfico de dispersão abaixo ilustra a relação entre o comprimento do texto limpo e a contagem de palavras, com os pontos coloridos de acordo com o rótulo. É possível observar uma correlação positiva entre essas duas variáveis, o que é esperado, pois textos mais longos tendem a ter mais palavras.
+
+![Relação entre Comprimento do Texto e Contagem de Palavras](img/relacao_comprimento_texto_contagem_palavras.png)
+>Gráfico: Relação entre Comprimento do Texto e Contagem de Palavras(Separado por labels)
 
 ## Identificação de Outliers
 
 Para identificar outliers no comprimento dos textos, utilizamos os quantis 0.05 e 0.95 como limites inferior e superior, respectivamente. Essa abordagem é comum para remover os casos extremos, que podem afetar negativamente a análise.
 
-Identificamos 88.239 outliers com base no comprimento do texto. Ao analisar a distribuição desses outliers por rótulo, observamos que a maioria pertence às categorias "negative" e "positive".
+Identificamos **88.239 outliers** com base no comprimento do texto. Ao analisar a distribuição desses outliers por rótulo, observamos que a maioria pertence às categorias "negative" e "positive".
 
 Posteriormente, removemos os outliers do conjunto de dados, mantendo apenas 5% dos dados com menor e maior comprimento de texto.
 
+```python
+# Identificando outliers no comprimento do texto com base 
+outliers = df[(df['Text_Length'] > df['Text_Length'].quantile(0.95)) | (df['Text_Length'] < df['Text_Length'].quantile(0.05))]
+
+# Removendo outliers com base no comprimento do texto (5% dos dados com menor e maior comprimento) para evitar viés na análise
+df_filtered = df[~((df['Text_Length'] > df['Text_Length'].quantile(0.95)) | (df['Text_Length'] < df['Text_Length'].quantile(0.05)))]
+```
+
 ## Word Cloud
 
-Uma Word Cloud é uma representação visual das palavras mais frequentes em um texto. Geramos Word Clouds separadas para os textos positivos e negativos, o que nos permite identificar visualmente as palavras mais proeminentes em cada sentimento.
+Uma Word Cloud é uma representação visual das palavras mais frequentes em um texto. Geramos Word Clouds separadas para os textos classificados com seus respectivos rótulos/labels, o que nos permite identificar visualmente as palavras mais proeminentes em cada sentimento.
 
-```
-Gráfico: Word Cloud para Texto Limpo em Inglês
-Tipo: Word Cloud
+A Word Cloud abaixo mostra as palavras mais frequentes nos textos em inglês, sem distinção de sentimento.
 
-```
 ![Word Cloud para Texto Limpo em Inglês](img/word_cloud_texto_ingles.png)
+>Gráfico: Word Cloud para Texto Limpo em Inglês
 
-A Word Cloud acima mostra as palavras mais frequentes nos textos em inglês, sem distinção de sentimento.
 
-```
-Gráfico: Palavras Mais Frequentes em Tweets Positivos
-Tipo: Word Cloud
+As Word Clouds abaixo mostram as palavras mais frequentes nos textos em inglês, distintas por rótulos/labels.
 
-```
 ![Word Cloud para Texto Limpo em Inglês](img/word_cloud_texto_ingles_positivo.png)
+>Gráfico: Palavras Mais Frequentes em Tweets Positivos
 
-```
-Gráfico: Palavras Mais Frequentes em Tweets Negativos
-Tipo: Word Cloud
 
-```
 ![Word Cloud para Texto Limpo em Inglês](img/word_cloud_texto_ingles_negativo.png)
+>Gráfico: Palavras Mais Frequentes em Tweets Negativos
 
-As Word Clouds separadas para tweets positivos e negativos nos permitem comparar as palavras mais proeminentes em cada sentimento, fornecendo insights sobre os tópicos e contextos comuns em cada categoria.
+
+![Word Cloud para Texto Limpo em Inglês](img/word_cloud_texto_ingles_incerteza.png)
+>Gráfico: Palavras Mais Frequentes em Tweets de Incerteza
+
+
+![Word Cloud para Texto Limpo em Inglês](img/word_cloud_texto_ingles_desavenca.png)
+>Gráfico: Palavras Mais Frequentes em Tweets de Desavenças (Litigiosos)
+
+As Word Clouds separadas nos permitem comparar as palavras mais proeminentes em cada sentimento, fornecendo insights sobre os tópicos e contextos comuns em cada categoria.
 
 ## Análise de Comprimento de Texto
-
-```
-Gráfico: Boxplot do Comprimento dos Textos em Inglês
-Tipo: Boxplot
-
-```
 ![Boxplot do Comprimento dos Textos em Inglês](img/boxblot_comprimento_texto_ingles.png)
+>Gráfico: Boxplot do Comprimento dos Textos em Inglês
 
-O boxplot acima mostra a distribuição do comprimento dos textos em inglês. Podemos identificar outliers e observar a variabilidade geral no comprimento dos textos.
+Neste boxplot, estamos visualizando a distribuição do comprimento dos textos em inglês. O boxplot é uma ferramenta gráfica que nos permite ver a mediana, os quartis e os valores atípicos (outliers) de uma distribuição. A linha dentro da caixa indica a mediana dos dados, que representa o valor central da distribuição do comprimento dos textos.
+
+As extremidades da caixa, conhecidas como o primeiro e terceiro quartis, marcam a metade inferior e superior dos dados, respectivamente. A distância entre esses quartis, chamada de intervalo interquartílico (IQR), é uma medida de dispersão e nos mostra onde está concentrada a maioria dos nossos dados.
+
+As linhas que se estendem verticalmente a partir da caixa, conhecidas como 'whiskers', indicam a variabilidade fora do quartil superior e inferior, e qualquer ponto fora dessas linhas é considerado um outlier. Esses são valores que se desviam significativamente do resto da distribuição e podem representar textos anormalmente longos ou curtos.
+
+Observando nosso boxplot, podemos ver que a maioria dos textos tem um comprimento que varia de forma bastante consistente, mas há alguns textos que são excepcionalmente longos, conforme indicado pelos pontos além do 'whisker' superior. Isso sugere que, embora a maioria dos textos esteja dentro de um intervalo de comprimento esperado, existem casos que podem requerer atenção especial ou análise adicional para entender por que se destacam.
 
 ## Análise de Frequência de Palavras
 
-```
-Gráfico: Top 20 Palavras Mais Frequentes
-Tipo: Gráfico de barras
-
-```
 ![Top 20 Palavras Mais Frequentes](img/top_20_palavras_frequentes_ingles.png)
+>Gráfico: Top 20 Palavras Mais Frequentes
 
-Este gráfico de barras apresenta as 20 palavras mais frequentes nos textos em inglês. Essa análise pode fornecer insights sobre os tópicos e contextos mais comuns presentes no conjunto de dados.
+Neste gráfico, estamos visualizando as 20 palavras mais frequentes encontradas em um conjunto de textos em inglês. A altura de cada barra indica a frequência da palavra correspondente no dataset analisado.
+
+Começando pela barra mais alta, 'like' aparece como a palavra mais frequente com um total de **73.441 ocorrências**, seguida de 'I'm' com aproximadamente **70.000 ocorrências**, e assim por diante. É interessante notar como termos comuns e de uso genérico dominam a lista, o que é típico em análises de frequência de palavras em dados de texto grande.
+
+Palavras como 'good', 'don't', 'get', e 'one' são exemplos de termos que poderíamos esperar ver com alta frequência, pois são geralmente usadas em diversos contextos. Já palavras como 'bad', 'probably', 'wrong', 'say', e 'almost', que aparecem no final do nosso top 20, ainda são relativamente comuns, mas com uma frequência menor comparada às primeiras.
+
+A distribuição de frequências aqui mostra que a variação não é uniforme; ela diminui de maneira significativa da palavra mais comum para a vigésima. Isso sugere uma dispersão ampla na frequência de uso das palavras dentro do corpus analisado.
+
+O uso de diferentes tonalidades de azul para as barras mais frequentes e depois transitando para o vermelho ajuda a destacar visualmente essa variação decrescente na frequência das palavras. Cada barra está rotulada com o número exato de ocorrências, proporcionando clareza e facilitando a interpretação precisa dos dados.
+
+Essa visualização é fundamental para compreender não apenas o léxico comum em um conjunto de dados textuais, mas também para iniciar análises mais profundas, como a identificação de tendências de linguagem ou a preparação de dados para processamento de linguagem natural, onde palavras de alta frequência podem ser tratadas como 'stop words' e removidas para focar em termos mais significativos para análises específicas.
 
 ## Análise de Sentimentos vs. Comprimento do Texto
 
-```
-Gráfico: Comprimento dos Textos por Sentimento
-Tipo: Boxplot
-
-```
 ![Comprimento dos Textos por Sentimento](img/comprimento_texto_sentimento.png)
+>Gráfico: Comprimento dos Textos por Sentimento
 
-Este boxplot explora a relação entre o sentimento dos textos (positivo ou negativo) e o comprimento do texto. Podemos observar se existe uma tendência de textos mais longos ou mais curtos serem associados a um sentimento específico.
+Este boxplot ilustra a distribuição do comprimento dos textos categorizados por quatro diferentes sentimentos: litigioso, positivo, negativo e incerteza. As caixas representam a faixa interquartil, que engloba o meio de cada distribuição, com as linhas horizontais internas marcando as medianas. Podemos observar que todos os sentimentos apresentam distribuições com medianas similares, o que sugere que, independentemente do sentimento, o comprimento dos textos tende a ser consistente. 
+
+Os 'bigodes' do boxplot, ou as linhas que se estendem das caixas, indicam a variabilidade fora dos quartis superiores e inferiores, e os círculos representam os outliers, ou pontos de dados que se destacam significativamente das outras observações. É notável a presença de diversos outliers em todos os sentimentos, especialmente no positivo e no negativo, indicando textos excepcionalmente longos em comparação com a maioria.
+
+Com base nessa visualização, concluímos que, enquanto a centralidade do comprimento dos textos é semelhante através dos sentimentos, a dispersão e os outliers sugerem variações no comprimento que podem estar associadas a características específicas dos sentimentos expressos nos textos.
 
 ## Análise de Bigramas e Trigramas
 
-```
-Gráfico: Top 20 Bigramas Mais Frequentes
-Tipo: Gráfico de barras
-
-```
 ![Top 20 Bigramas Mais Frequentes](img/top_20_bigramas_mais_frequentes.png)
+>Gráfico: Top 20 Bigramas Mais Frequentes
 
-A análise de bigramas e trigramas nos permite identificar as combinações mais comuns de duas ou três palavras nos textos. Este gráfico de barras mostra os 20 bigramas mais frequentes, o que pode fornecer insights sobre os contextos e tópicos específicos presentes nos dados.
+Este gráfico de barras horizontal exibe os 20 bigramas mais frequentes encontrados no nosso conjunto de dados de texto em inglês. Bigramas são pares de palavras consecutivas que, quando analisados juntos, podem oferecer insights sobre temas e padrões comuns na linguagem. 
+
+Começando no topo, o bigrama 'im excited' lidera com a maior frequência, indicando um sentimento positivo que aparece frequentemente nos textos. Seguem-se outros bigramas comuns como 'dont know' e 'witness tampering', que podem sugerir temas de incerteza ou contextos legais, respectivamente. A presença de termos como 'supreme court', 'data breach', e 'security breach' indica discussões em torno de assuntos legais e de segurança de informações. 
+
+Esses bigramas frequentes variam desde expressões cotidianas como 'good morning' até termos específicos como 'cassidy hutchinson', que pode ser um nome próprio. Os diferentes tons de cor das barras facilitam a distinção visual entre as posições relativas dos bigramas, enquanto as linhas numéricas permitem uma compreensão quantitativa da frequência de cada bigrama.
+
+A análise destes bigramas pode ser particularmente útil para entender as conversas e preocupações predominantes dentro do corpus analisado, auxiliando em pesquisas que requerem conhecimento sobre o uso contextual das palavras.
+
+![Top 20 Trigramas Mais Frequentes](img/top_20_trigramas_mais_frequentes.png)
+>Gráfico: Top 20 Trigramas Mais Frequentes
+
+Este gráfico de barras horizontal apresenta os 20 trigramas mais frequentes encontrados em nosso conjunto de dados de textos em inglês. Um trigrama é uma sequência de três palavras consecutivas, e a análise de sua frequência pode nos dar uma visão profunda dos temas e padrões linguísticos prevalentes
+
+Este gráfico de barras horizontal apresenta os 20 trigramas mais frequentes encontrados em nosso conjunto de dados de textos em inglês. Um trigrama é uma sequência de três palavras consecutivas, e a análise de sua frequência pode nos dar uma visão profunda dos temas e padrões linguísticos prevalentes no corpus analisado. 
+
+No topo da lista, com a frequência mais alta, temos o trigrama "secret service agent", que poderia indicar discussões em torno de tópicos de segurança ou políticos. Seguem-se expressões como "surprisingly controversial topics" e "controversial topics cup", sugerindo debates ou discussões sobre assuntos potencialmente polêmicos. 
+
+Os trigramas menos frequentes incluem "make life easier" e "makes perfect sense", que podem ser associados a textos com teor explicativo ou instrutivo. 
+
+Observamos também trigramas como "dream come true" e "dreams come true", que refletem um conteúdo possivelmente otimista ou inspirador.
+
+A distribuição das frequências nos ajuda a entender quais tópicos ou expressões são mais discutidos ou mencionados, oferecendo um ponto de partida para análises textuais mais detalhadas, como a identificação de tendências, o sentimento geral do corpus ou a prevalência de certos tópicos de conversação.
 
 ## Análise de Densidade e Distribuição
 
-```
-Gráfico: Distribuição de Densidade do Comprimento dos Textos
-Tipo: Gráfico de densidade
-
-```
 ![Distribuição de Densidade do Comprimento dos Textos](img/distribuicao_densidade_compromento_textos.png)
+>Gráfico: Distribuição de Densidade do Comprimento dos Textos
 
-O gráfico de densidade complementa a análise do comprimento dos textos, fornecendo uma visualização mais detalhada da distribuição subjacente dos dados. Isso pode ajudar a identificar eventuais desvios ou assimetrias na distribuição.
+Este gráfico de densidade mostra a distribuição do comprimento dos textos em nosso dataset. A curva representa onde os comprimentos dos textos se concentram: há um pico inicial que sugere que muitos dos textos são relativamente curtos, e a curva decresce indicando que textos mais longos são menos frequentes.
+
+A média de comprimento do texto, marcada pela linha azul pontilhada, está em torno de **89.11 caracteres**, enquanto a mediana, representada pela linha verde pontilhada, está em **79 caracteres**. A diferença entre a média e a mediana indica a presença de textos muito longos no conjunto de dados, o que distorce a média para um valor maior.
+
+Podemos concluir que, apesar da existência de textos mais longos, a maioria dos textos no nosso corpus tende a ser mais concisa, como refletido pela mediana e pelo pico da distribuição. Isso é típico em análises de texto onde brevidade é comum, como em postagens de mídias sociais ou mensagens de texto.
 
 ## Descrição dos Achados
 
@@ -210,11 +244,9 @@ A partir da análise descritiva e exploratória realizada, destacamos os seguint
 
 4. A análise de balanceamento de rótulos por idioma revelou que alguns idiomas apresentavam uma distribuição mais equilibrada, enquanto outros tinham uma predominância significativa de um ou dois rótulos específicos. 
 
-5. Para a análise adicional, selecionamos tweets em inglês com rótulos "positive" e "negative", uma vez que esses rótulos representam sentimentos claramente definidos e opostos, além de facilitar o uso de ferramentas de PLN otimizadas para o inglês.
+5. A análise de frequência de palavras e bigramas complementou os insights obtidos pelas Word Clouds, quantificando as palavras e combinações mais frequentes nos textos.
 
-6. A análise de frequência de palavras e bigramas complementou os insights obtidos pelas Word Clouds, quantificando as palavras e combinações mais frequentes nos textos.
-
-7. A análise de densidade e distribuição do comprimento dos textos revelou a distribuição subjacente dos dados, permitindo identificar eventuais desvios ou assimetrias.
+6. A análise de densidade e distribuição do comprimento dos textos revelou a distribuição subjacente dos dados, permitindo identificar eventuais desvios ou assimetrias.
 
 Com base nos insights obtidos, decidimos focar nossa análise adicional apenas em postagens em inglês com rótulos "positive" e "negative". Essa escolha foi motivada por várias razões:
 
