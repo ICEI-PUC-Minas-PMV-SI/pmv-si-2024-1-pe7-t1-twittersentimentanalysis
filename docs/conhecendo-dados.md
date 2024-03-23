@@ -254,9 +254,7 @@ Com base nos insights obtidos, decidimos focar nossa análise adicional apenas e
 
 2. **Disponibilidade de Ferramentas**: Existem muitas bibliotecas e ferramentas de processamento de linguagem natural (PLN) otimizadas para o inglês, facilitando a aplicação de técnicas avançadas.
 
-3. **Amostragem de dados consistente**: 
-
-O conjunto de dados teve uma coleta de amostras mais confiável em inglês, o que o torna mais seguro e eficaz quando aplicado especificamente nesse idioma em comparação com todos os outros no conjunto de dados. Isso é válido até mesmo para a extração de dados e análises.
+3. **Amostragem de dados consistente**: O conjunto de dados teve uma coleta de amostras mais confiável em inglês, o que o torna mais seguro e eficaz quando aplicado especificamente nesse idioma em comparação com todos os outros no conjunto de dados. Isso é válido até mesmo para a extração de dados e análises.
 
 ## Ferramentas Utilizadas
 
