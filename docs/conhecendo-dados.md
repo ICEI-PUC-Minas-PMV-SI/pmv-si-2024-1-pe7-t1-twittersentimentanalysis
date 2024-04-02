@@ -120,6 +120,36 @@ outliers = df[(df['Text_Length'] > df['Text_Length'].quantile(0.95)) | (df['Text
 df_filtered = df[~((df['Text_Length'] > df['Text_Length'].quantile(0.95)) | (df['Text_Length'] < df['Text_Length'].quantile(0.05)))]
 ```
 
+Abaixo, por meio dos gráficos de distribuição de sentimentos usando dados exclusivamente na língua inglesa, é possível observar a variação dos valores com e sem a aplicação de outliers no conjunto de dados selecionado.
+
+![Distribuição dos Sentimentos nos Textos em Inglês - Com Outliers](img/distribuicao_sentimentos_textos_ingles.png)
+>Gráfico: Distribuição dos Sentimentos nos Textos em Inglês - Com Outliers
+
+![Distribuição dos Sentimentos nos Textos em Inglês - Outliers Removidos](img/distribuicao_sentimentos_textos_ingles_removido_outliers.png)
+>Gráfico: Distribuição dos Sentimentos nos Textos em Inglês - Outliers Removidos
+
+Através da análise dos gráficos, é possível perceber uma pequena variação entre os valores dos sentimentos distribuídos, onde nenhum deles ultrapassa a margem de 10% de diferença. São eles:
+
+`positive`:
+- Com Outliers: 247.254 
+- Sem Outliers: 223.975
+>Diferença de 23.279(9,41%)
+
+`negative`:
+- Com Outliers: 243.139 
+- Sem Outliers: 219.428
+>Diferença de 23.711(9,75%)
+
+`litigious`:
+- Com Outliers: 178688 
+- Sem Outliers: 165168
+>Diferença de 13.520(7,56%)
+
+`uncertainty`:
+- Com Outliers: 198.097 
+- Sem Outliers: 186.379
+>Diferença de 11.718(5,91%)
+
 ## Word Cloud
 
 Uma Word Cloud é uma representação visual das palavras mais frequentes em um texto. Geramos Word Clouds separadas para os textos classificados com seus respectivos rótulos/labels, o que nos permite identificar visualmente as palavras mais proeminentes em cada sentimento.
@@ -236,17 +266,39 @@ Observamos que alguns idiomas apresentam uma distribuição relativamente equili
 
 A partir da análise descritiva e exploratória realizada, destacamos os seguintes achados relevantes:
 
-1. O conjunto de dados original apresentava um equilíbrio razoável entre os diferentes rótulos ("positive", "negative", "litigious" e "uncertainty"), o que é uma característica desejável para a análise de sentimentos.
+1. Observamos uma predominância de tweets em inglês no conjunto de dados, seguidos por francês, espanhol e português. Essa distribuição de idiomas pode influenciar as abordagens e ferramentas utilizadas para o processamento de linguagem natural.
 
-2. Observamos uma predominância de tweets em inglês no conjunto de dados, seguidos por francês, espanhol e português. Essa distribuição de idiomas pode influenciar as abordagens e ferramentas utilizadas para o processamento de linguagem natural.
+2. O conjunto de dados original, na linguagem inglesa, apresentava uma discrepância entre os diferentes rótulos ("positive", "negative", "litigious" e "uncertainty"), os valores conferidos foram os seguintes:
 
-3. Após a limpeza e preparação dos dados, identificamos outliers com base no comprimento do texto. Esses outliers foram removidos para evitar que influenciassem negativamente a análise.
+- `positive`: 247.254.
+- `negative`: 243.139.
+- `uncertainty`: 198.097.
+- `litigious`: 178.688.
 
-4. A análise de balanceamento de rótulos por idioma revelou que alguns idiomas apresentavam uma distribuição mais equilibrada, enquanto outros tinham uma predominância significativa de um ou dois rótulos específicos. 
+Ao analisarmos a distribuição das discrepâncias dos rótulos com base no maior deles, o rótulo `positive`, podemos observar que os rótulos `uncertainty` e `litigious` apresentam um valor consideravelmente menor em comparação com a diferença do rótulo `negative`:
 
-5. A análise de frequência de palavras e bigramas complementou os insights obtidos pelas Word Clouds, quantificando as palavras e combinações mais frequentes nos textos.
+- `negative`: (-1,66%).
+- `uncertainty`: (-19,8%).
+- `litigious`: (-27,7%).
 
-6. A análise de densidade e distribuição do comprimento dos textos revelou a distribuição subjacente dos dados, permitindo identificar eventuais desvios ou assimetrias.
+3. Após a limpeza e preparação dos dados, identificamos outliers com base no comprimento do texto. Esses outliers foram removidos para evitar que influenciassem negativamente a análise, os valores conferidos foram os seguintes:
+
+- `positive`: 223.975.
+- `negative`: 219.428.
+- `uncertainty`: 186.379.
+- `litigious`: 165.168.
+
+Após remoção dos outliers, a distribuição das discrepâncias dos rótulos com base no maior deles, ficou assim:
+
+- `negative`: (-2,03%).
+- `uncertainty`: (-16,78%).
+- `litigious`: (-26,25%).
+
+Constatando uma variação irrisória, entretanto, existente com a aplicabilidade dos outliers.
+
+4. A análise de frequência de palavras e bigramas complementou os insights obtidos pelas Word Clouds, quantificando as palavras e combinações mais frequentes nos textos.
+
+5. A análise de densidade e distribuição do comprimento dos textos revelou a distribuição subjacente dos dados, permitindo identificar eventuais desvios ou assimetrias.
 
 Com base nos insights obtidos, decidimos focar nossa análise adicional apenas em postagens em inglês. Essa escolha foi motivada por várias razões:
 
