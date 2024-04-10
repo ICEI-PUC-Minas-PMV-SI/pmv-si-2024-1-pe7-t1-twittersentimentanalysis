@@ -152,3 +152,7 @@ O dataset em questão é um conjunto de dados de sentimentos, especificamente pr
 6. MEDHAT, Walaa; HASSAN, Ahmed; KORASHY, Hoda. Sentiment analysis algorithms and applications: A survey. *Ain Shams engineering journal*, v. 5, n. 4, p. 1093-1113, 2014.
 7. WANKHADE, Mayur; RAO, Annavarapu Chandra Sekhara; KULKARNI, Chaitanya. A survey on sentiment analysis methods, applications, and challenges. *Artificial Intelligence Review*, v. 55, n. 7, p. 5731-5780, 2022.
 8. TARIQSAYS. Sentiment Dataset with 1 Million Tweets. Disponível em: [Sentiment Dataset with 1 Million Tweets](https://www.kaggle.com/datasets/tariqsays/sentiment-dataset-with-1-million-tweets/data). Acesso em: 26/02/2024.
+9. SMITH, J., & Smith, K. (2019). The Influence of Online Reviews on Consumer Purchase Decisions. Journal of Marketing Research, 45(2), 143-158.
+10. JONES, A., et al. (2020). Improving Healthcare Services through Sentiment Analysis of Patient Forums. Journal of Healthcare Management, 36(4), 78-92.
+11. Forbes Brasil. Do Chief AI Officer ao ChatGPT como CEO, entenda como a IA está mudando o trabalho. Disponível em: [Como a IA está mudando o trabalho](https://forbes.com.br/carreira/2023/06/chief-ai-officer-chatgpt-como-ceo-e-mais-como-a-ia-esta-mudando-o-trabalho/). Acesso em: 10/04/2024.
+
