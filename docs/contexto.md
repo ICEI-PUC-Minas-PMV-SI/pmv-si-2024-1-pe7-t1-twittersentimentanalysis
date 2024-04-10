@@ -34,7 +34,8 @@ Além disso, a aplicação de tecnologias de ponta em inteligência artificial, 
 O projeto tem como função principal desenvolver um sistema de análise de sentimentos avançado, utilizando técnicas de inteligência artificial para interpretar e classificar emoções expressas em grandes volumes de texto. O sistema buscará superar a dificuldade em analisar nuances da linguagem humana, permitindo que organizações extraiam insights acionáveis de feedbacks textuais, melhorando assim sua capacidade de resposta e adaptação estratégica. Com uma base sólida em estudos e pesquisas prévias, este projeto visa não apenas abordar um desafio significativo, mas também contribuir para o avanço do campo de análise de sentimentos e inteligência artificial como um todo.
 
 ## Público-Alvo
-O sistema proposto tem como alvo uma variedade de stakeholders, visando atender às necessidades específicas de diferentes perfis. O público-alvo inclui:
+
+O público-alvo deste projeto abrange diversas categorias de stakeholders, incluindo empresas de diferentes setores que coletam feedback textual, profissionais de marketing que monitoram sentimentos em relação a marcas nas redes sociais, equipes de atendimento ao cliente que buscam identificar feedbacks negativos para ação rápida, entre outros. A amplitude do público-alvo ressalta a utilidade e aplicabilidade abrangente do sistema proposto. O público-alvo inclui:
 
 ### Empresas de diversos setores
 **Objetivo:** Empresas que coletam feedback textual, como varejo, serviços e plataformas digitais, buscando compreender melhor as percepções dos usuários.<br>
@@ -56,6 +57,15 @@ O sistema proposto tem como alvo uma variedade de stakeholders, visando atender 
 - Inclui equipes de atendimento ao cliente em âmbito global.
 - Profissionais envolvidos na gestão de feedbacks e melhoria da experiência do cliente.
 
+### Área da saúde
+**Objetivo:** Análise de tendências depressivas/suicidas nas redes sociais. <br>
+**Características do Público-Alvo:**
+- Profissionais de Saúde Mental: Incluindo psicólogos, psiquiatras, terapeutas e assistentes sociais especializados no tratamento de distúrbios mentais.
+- Pesquisadores em Saúde Pública: Especialistas que estudam as tendências e os padrões relacionados à saúde mental da população, utilizando dados coletados das redes sociais para análise epidemiológica.
+- Profissionais de Prevenção ao Suicídio: Engajados em programas de prevenção ao suicídio, esses profissionais monitoram as redes sociais em busca de sinais de alerta e fornecem apoio e recursos para aqueles em risco.
+- Organizações de Saúde e Bem-Estar: Instituições e ONGs dedicadas à promoção da saúde mental, que utilizam análises de tendências depressivas e suicidas para desenvolver estratégias de intervenção e suporte.
+- Pacientes e Familiares: Indivíduos que procuram informações e apoio relacionados à saúde mental, bem como aqueles que desejam compartilhar suas experiências e buscar conexão com outros que enfrentam desafios semelhantes.
+ 
 ## Estado da arte
 
 Na revisão da literatura sobre análise de sentimentos, foram identificados três estudos fundamentais que abordam problemas semelhantes ao deste projeto, utilizando conjuntos de dados e abordagens analíticas específicos.
