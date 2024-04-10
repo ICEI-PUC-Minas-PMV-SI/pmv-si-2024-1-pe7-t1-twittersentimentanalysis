@@ -12,7 +12,7 @@ A complexidade e a sutileza da linguagem humana, incluindo sarcasmo, ambiguidade
 
 ## Questão de pesquisa
 
-Como podemos superar os desafios da análise de sentimentos em dados textuais, incluindo a compreensão de nuances como sarcasmo, ambiguidades e expressões culturais, a fim de extrair insights significativos para melhorar a capacidade de resposta e adaptação estratégica às necessidades dos usuários?
+Como podemos superar os desafios da análise de sentimentos em dados textuais, incluindo a compreensão de nuances como sarcasmo, ambiguidades e expressões culturais, a fim de extrair insights significativos para melhorar a capacidade de resposta e adaptação estratégica às necessidades dos usuários e construir um modelo capaz de oferecer resultados mais confiáveis para tomada de decisão?
 
 ## Objetivos preliminares
 
