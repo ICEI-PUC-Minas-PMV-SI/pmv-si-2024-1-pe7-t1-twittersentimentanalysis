@@ -72,13 +72,13 @@ Na revisão da literatura sobre análise de sentimentos, foram identificados tr�
 
 1. **SentimentAnalysis: An Overview from Linguistics - Maite Taboada (2016)**: 
 
-A tese principal do estudo de Taboada se basea em abstrair contexto de um texto(ou parte dele) e determiminar se o mesmo possui subjetividade, caso possua, devemos saber se aquele texto em específico expressa uma opinião positiva ou negativa sobre determinado contexto. Para alcancar tal objetivo, é utilizado principalmente os métodos de Processamento de Linguagem Natural(PLN) e Métodos Léxico-gramática.
+A tese principal do estudo de Taboada se basea em abstrair contexto de um texto(ou parte dele) e determinar se o mesmo possui subjetividade, caso possua, devemos saber se aquele texto em específico expressa uma opinião positiva ou negativa sobre determinado contexto. Para alcancar tal objetivo, é utilizado principalmente os métodos de Processamento de Linguagem Natural(PLN) e Métodos Léxico-gramática.
 
-O processo de Aprendizado Supervisionado é utilizado, para treinamento é utilizado pedaços de texto em que são identificados os respectivos sentimento, com base nessa pré-modelagem, o modelo é capaz de aprender determinados padrões textuais e quais os sentimentos envolvidos nesse trecho. A classificação final, resulta em valores binários, sendo eles positivos ou negativos, existindo uma pequena ressalva em que pode conter uma terceira opção categorizada como neutra.
+O processo de Aprendizado Supervisionado é utilizado, para treinamento é utilizado pedaços de texto em que são identificados os respectivos sentimentos, com base nessa pré-modelagem, o modelo é capaz de aprender determinados padrões textuais e quais os sentimentos envolvidos nesse trecho. A classificação final, resulta em valores binários, sendo eles positivos ou negativos, existindo uma pequena ressalva em que pode conter uma terceira opção categorizada como neutra.
 
 Também é utilizado o método Léxico-gramática, que se trata de extrair do texto as palavras e relacioná-las com seus significados literais em dicionários, agregando valor para cada palavra, que ao ser colocado em um contexto linguístico, expressa um sentimento positivo ou negativo em relação ao contexto textual. Ao realizar a comparação da palavra com seu significado, é possível determinar quais trechos são importantes ou não, para gerar valor ao modelo, como recurso a ser utilizado.
 
-Um exemplar, para como os recursos eram identifcados no método Léxico-gramática, apresentado pela autora:
+Um exemplar, para como os recursos eram identificados no método Léxico-gramática, apresentado pela autora:
 
 |                |Subjetividade(dicionário)|SO-CAL|
 |----------------|-------------------------------|-----------------------------|
@@ -89,7 +89,8 @@ Um exemplar, para como os recursos eram identifcados no método Léxico-gramáti
 
 Também é utilizado o "Semantic Orientation Calculator(SO-CAL)", que determina em uma escala de 10 pontos, iniciados em -5 à +5, que indicia valores semânticos às expressões linguísticas de um texto, utilizado no estudo dirigido por Taboada, para agregação de valor ao modelo treinado.
 
-O dataset escolhido não é informado em detalhes, mas é explicitado que muito da pesquisa foi focado na realização de análise de reviews de filmes, livros e opinião de compradores de determinados produtos, baseados no estudos de Daveetal(2003), Hu & Liu(2004), Kennedy & Inkpen(2006), Turney(2002). O estudo é conduzido em Inglês.
+O dataset escolhido não é informado em detalhes, mas é explicitado que muito da pesquisa foi focado na realização de análise de reviews de filmes, livros e opinião de compradores de determinados produtos, baseados no estudos de Daveetal(2003), Hu & Liu(2004), Kennedy & Inkpen(2006), Turney(2002). 
+O estudo é conduzido em Inglês e, de acordo com a autora, em uma amostragem de dados de 2.000 reviews, os métodos aplicados foram capazes de classificar corretamente a polaridade de **80%**, em reviews não vistos anteriormentes pelo modelo treinado.
 
 2. **A survey on sentiment analysis methods, applications, and challenges(2022) - Mayur Wankhade, Annavarapu Chandra Sekhara Rao e Chaitanya Kulkarni (2022)**: 
 
@@ -116,11 +117,35 @@ SVM, ou Support Vector Machine, é um algoritmo de aprendizado de máquina super
 
 3. **Sentiment analysis algorithms and applications: A survey - Walaa Medhat, Ahmed Hassanb, Hoda Korashy (2014)**:
 
-Medhat e colaboradores detalham algoritmos divididos em categorias: métodos de aprendizado de máquina, método léxico-gramática e métodos híbridos. Entre os algoritmos de aprendizado de máquina, destacam-se Naive Bayes, Máquinas de Vetores de Suporte (SVM) e redes neurais, com um interesse particular nos resultados promissores das técnicas de aprendizado profundo para capturar contextos complexos.
+Medhat e colaboradores detalham algoritmos divididos em categorias: métodos de aprendizado de máquina, método léxico-gramática e métodos híbridos. 
+
+Entre os algoritmos de aprendizado de máquina, destacam-se Naive Bayes, Máquinas de Vetores de Suporte (SVM) e redes neurais, com um interesse particular nos resultados promissores das técnicas de aprendizado profundo para capturar contextos complexos.
 
 Embora não especifiquem datasets, a revisão sugere a importância de se utilizar várias fontes de dados para validar a robustez dos algoritmos, incluindo revisões de produtos, comentários em mídias sociais e opiniões em fóruns. O artigo serve como uma survey abrangente, referenciando múltiplos estudos chave que moldaram a evolução da análise de sentimentos.
 
-Destaca a dificuldade de análise em textos com sarcasmo, ironia e expressões idiomáticas, além da dependência de domínio dos modelos, que podem não generalizar bem entre diferentes contextos. Também enfatiza a importância do aprendizado profundo e do processamento de linguagem natural para superar limitações atuais, apontando para o potencial dos modelos de linguagem pré-treinados e análise multilíngue.
+Os autores destacam a dificuldade de análise em textos com sarcasmo, ironia e expressões idiomáticas, além da dependência de domínio dos modelos, que podem não generalizar bem entre diferentes contextos. Também enfatiza a importância do aprendizado profundo e do processamento de linguagem natural para superar limitações atuais, apontando para o potencial dos modelos de linguagem pré-treinados e análise multilíngue.
+
+Há uma seção de destaque no artigo, em que é demonstrado a relevância do processo de seleção dos recursos disponíveis para o resultado final gerado. Nessa seção é destacado 4 pontos principais, sendo eles:
+
+- Presença e frequência de determinadas sentença:
+Essas sentenças são palavras/palavras com sentidos grámaticais individuas e suas frequências de aparição no conjunto de dados, que são classificadas no formato binário ou verificam pela frequência de aparição das palavras para determinar a importância de tal palavra no sentido da frase.
+
+- Partes do discurso:
+ Nessa parte é realizado a busca dos adjetivos nas sentenças, uma vez que são partes importantes para formação de opinião.
+
+- Palavras e frases formadoras de opiniões:
+ Nessa parte é realizado a busca de palavras comumentes utilizadas nas sentenças, como por exemplo, good ou bad, like ou hate, uma vez que tabém são partes importantes para formação de opinião.
+
+- Negações:
+ Nessa parte é realizado a verificação de negações presentes nas frases, uma vez que a negação é capaz de modificar todo o sentido conotativo da sentença.
+
+De acordo com observações detalhadas pelos autores, foi verificado que o uso de recursos estruturais tende a melhorar a precisão das previsões baseadas em polaridades, em um estudo realizado por Zirn C, Niepert M, Stuckenschmidt H e Strube M, aonde foi aplicado os conceitos da rede lógica de Markov(MLN), os resultados alcançados atingiram as pontuações de **precisão de até 69%**.
+
+> A Rede Lógica de Markov (MLN) é um modelo probabilístico que combina conceitos da lógica formal e da teoria dos grafos para representar e raciocinar sobre incerteza em dados estruturados.
+>
+> Em termos simples, uma MLN é uma coleção de cláusulas lógicas (por exemplo, proposições de lógica de primeira ordem) associadas a pesos que indicam a força de associação entre as cláusulas. Essas cláusulas são interpretadas como restrições probabilísticas sobre as relações entre as variáveis do domínio.
+>
+> Em resumo, a MLN é uma ferramenta poderosa para modelar e inferir sobre incerteza em dados estruturados, combinando elementos da lógica e da probabilidade para representar e raciocinar sobre relações complexas entre variáveis.
 
 # Descrição do dataset selecionado
 
