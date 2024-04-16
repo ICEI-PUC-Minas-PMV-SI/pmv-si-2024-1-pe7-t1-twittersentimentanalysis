@@ -124,6 +124,8 @@ Destaca a dificuldade de análise em textos com sarcasmo, ironia e expressões i
 
 # Descrição do dataset selecionado
 
+- **Sentiment Dataset with 1 Million Tweets - MUHAMMAD TARIQ**
+
 O dataset em questão é um conjunto de dados de sentimentos, especificamente projetado para a análise de sentimentos em tweets. Este dataset é composto por tweets que foram anotados em quatro categorias diferentes, que incluem 'positivo', 'negativo', 'incerteza' e 'litigioso', permitindo a detecção de diferentes tipos de sentimentos expressos através do texto. Aqui estão os detalhes sobre os atributos disponíveis neste dataset:
 
 1. **Language**: Este campo descreve o idioma em que o tweet foi escrito. O idioma é um fator crucial na análise de sentimentos, pois a compreensão do contexto e das nuances linguísticas pode variar significativamente de um idioma para outro. Este atributo é do tipo texto.
@@ -131,6 +133,8 @@ O dataset em questão é um conjunto de dados de sentimentos, especificamente pr
 2. **Text**: Este campo contém o texto do tweet. O conteúdo textual é o componente central deste dataset, pois é a partir dele que os sentimentos são identificados e analisados. Este atributo é do tipo texto e é onde técnicas de processamento de linguagem natural são aplicadas para extrair características relevantes para a análise de sentimentos.
 
 3. **Label**: Este campo indica a categoria de sentimento anotada para cada tweet. As categorias incluem 'positivo', 'negativo', 'incerteza' e 'litigioso', fornecendo uma classificação do sentimento expresso no texto. Este atributo é crucial para treinar modelos de aprendizado de máquina supervisionado, servindo como a variável alvo (ou rótulo) que o modelo tenta prever. Este atributo é do tipo categórico.
+
+Conforme sua descrição no site Kaggle, o dataset contêm 929.544 tweets únicos, sendo que 93% dos dados totais se encontram na linguagem inglesa. Em suas informações, é indicado que o dataset foi baixado 1.559 vezes, possuindo 14 instâncias/notebooks criados que utilizam seus dados. Para acesso, o data set está disponibilizado no seguinte link: https://www.kaggle.com/datasets/tariqsays/sentiment-dataset-with-1-million-tweets/data
 
 # Canvas analítico
 
