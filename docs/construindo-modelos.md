@@ -1,30 +1,118 @@
 # Preparação dos dados
 
-Nesta etapa, deverão ser descritas todas as técnicas utilizadas para pré-processamento/tratamento dos dados.
+A preparação de dados é um componente crítico no processo de aprendizado de máquina, que diretamente influencia a performance e eficácia dos modelos construídos. No contexto do conjunto de dados "**Sentiment Dataset with 1 Million Tweets - MUHAMMAD TARIQ**", utilizamos um conjunto abrangente de técnicas de pré-processamento e tratamento de dados para maximizar a qualidade e a relevância das informações disponíveis.
 
-Algumas das etapas podem estar relacionadas à:
+## **Limpeza de Dados**
 
-* Limpeza de Dados: trate valores ausentes: decida como lidar com dados faltantes, seja removendo linhas, preenchendo com médias, medianas ou usando métodos mais avançados; remova _outliers_: identifique e trate valores que se desviam significativamente da maioria dos dados.
+Neste projeto, a limpeza de dados incluiu as seguintes etapas:
 
-* Transformação de Dados: normalize/padronize: torne os dados comparáveis, normalizando ou padronizando os valores para uma escala específica; codifique variáveis categóricas: converta variáveis categóricas em uma forma numérica, usando técnicas como _one-hot encoding_.
+- Remoção de expressões regulares(Urls, menções, hashtags e caracteres especiais);
+```python 
+# Função de limpeza de texto para remover URLs, menções, hashtags, caracteres especiais e números
+def clean_text(text):
+    if pd.isnull(text):
+        return text
+    text = re.sub(r'http\S+', '', text)  # Remover URLs
+    text = re.sub(r"www.\S+",'', text)  # Remover URLs
+    text = re.sub('@[A-Za-z0-9_]+','',text)  # Remover menções
+    text = re.sub('#[A-Za-z0-9_]+','',text)  # Remover hashtags
+    text = re.sub(r'[^a-zA-Z\s]', '', text)  # Remover caracteres especiais e números
+    text = re.sub(r'\s+', ' ', text).strip()  # Remover espaços extras
+    return text
 
-* _Feature Engineering_: crie novos atributos que possam ser mais informativos para o modelo; selecione características relevantes e descarte as menos importantes.
+# Aplicando a limpeza de texto na coluna 'Language'. Foram encontrados links de imagens, o que não é relevante para a análise
+df['Language'] = df['Language'].astype(str).apply(clean_text)
 
-* Tratamento de dados desbalanceados: se as classes de interesse forem desbalanceadas, considere técnicas como _oversampling_, _undersampling_ ou o uso de algoritmos que lidam naturalmente com desbalanceamento.
+df.drop(df[df['Language'].astype(str).apply(lambda x: len(x) > 3)].index, inplace=True)
 
-* Separação de dados: divida os dados em conjuntos de treinamento, validação e teste para avaliar o desempenho do modelo de maneira adequada.
-  
-* Manuseio de Dados Temporais: se lidar com dados temporais, considere a ordenação adequada e técnicas específicas para esse tipo de dado.
-  
-* Redução de Dimensionalidade: aplique técnicas como PCA (Análise de Componentes Principais) se a dimensionalidade dos dados for muito alta.
+# Aplicando a limpeza de texto na coluna 'Text' para remover URLs, menções, hashtags, caracteres especiais e números
+df['Clean_Text'] = df['Text'].astype(str).apply(clean_text)
+```
 
-* Validação Cruzada: utilize validação cruzada para avaliar o desempenho do modelo de forma mais robusta.
+- Remoção de Stop Words (palavras comuns que aparecem com frequência, mas não agregam sentido/valor à frase, exemplo, artigos e preposições, o/a/um/e...);
+```python
+# Remover stopwords
+stop_words_en = set(stopwords.words('english'))
 
-* Monitoramento Contínuo: atualize e adapte o pré-processamento conforme necessário ao longo do tempo, especialmente se os dados ou as condições do problema mudarem.
+def remove_stopwords(text):
+    tokens = text.split()
+    filtered_tokens = [token.lower() for token in tokens if token.lower() not in stop_words_en]
+    return ' '.join(filtered_tokens)
 
-* Entre outras....
+df_english.loc[:, 'Clean_Text'] = df_english['Clean_Text'].apply(remove_stopwords)
+```
 
-Avalie quais etapas são importantes para o contexto dos dados que você está trabalhando, pois a qualidade dos dados e a eficácia do pré-processamento desempenham um papel fundamental no sucesso de modelo(s) de aprendizado de máquina. É importante entender o contexto do problema e ajustar as etapas de preparação de dados de acordo com as necessidades específicas de cada projeto.
+- Outliers, identificados usando os quantis 0.05 e 0.95 para o comprimento do texto, foram removidos para minimizar o viés nos resultados da análise;
+
+![Distribuição dos Sentimentos nos Textos em Inglês - Com Outliers](img/distribuicao_sentimentos_textos_ingles.png)
+>Gráfico: Distribuição dos Sentimentos nos Textos em Inglês - Com Outliers
+ 
+```python
+# Identificando outliers no comprimento do texto com base 
+outliers = df[(df['Text_Length'] > df['Text_Length'].quantile(0.95)) | (df['Text_Length'] < df['Text_Length'].quantile(0.05))]
+print("Outliers identificados:", len(outliers))
+```
+>Outliers identificados: 88.239
+
+```python
+# Quantidade de outliers por rótulo
+outliers['Label'].value_counts()
+```
+>`negative`: 29.282
+>
+>`positive`: 28.636
+>
+>`litigious`: 17.628
+>
+>`uncertainty`: 12.693
+
+```python
+# Removendo outliers com base no comprimento do texto (5% dos dados com menor e maior comprimento) para evitar viés na análise
+df_filtered = df[~((df['Text_Length'] > df['Text_Length'].quantile(0.95)) | (df['Text_Length'] < df['Text_Length'].quantile(0.05)))]
+```
+
+![Distribuição dos Sentimentos nos Textos em Inglês - Outliers Removidos](img/distribuicao_sentimentos_textos_ingles_removido_outliers.png)
+>Gráfico: Distribuição dos Sentimentos nos Textos em Inglês - Outliers Removidos
+
+- Valores ausentes na coluna 'Language' foram tratados preenchendo-os com uma string vazia; 
+```python
+# Tratando valores ausentes na coluna 'Language', preenchendo com vazio ('') para evitar problemas na análise de texto
+df['Language'].fillna('', inplace=True)
+```
+
+- Duplicatas foram eliminadas para evitar redundâncias que poderiam distorcer as análises;
+```python
+# Remoção de duplicatas
+df.drop_duplicates(inplace=True)
+```
+
+- Limitação do escopo dos dados apenas para a linguagem inglesa.
+
+![Distribuição de Quantidade de Tweets x Idiomas](img/distribuicao_idiomas_x_quantidade_twittes.png)
+>*Gráfico: Distribuição de Quantidade de Tweets x Idiomas*
+
+## **Feature Engineering**
+Crie novos atributos que possam ser mais informativos para o modelo; selecione características relevantes e descarte as menos importantes.
+
+## **Tratamento de dados desbalanceados**
+Se as classes de interesse forem desbalanceadas, considere técnicas como oversampling, undersampling ou o uso de algoritmos que lidam naturalmente com desbalanceamento.
+
+## **Separação de dados**
+Divida os dados em conjuntos de treinamento, validação e teste para avaliar o desempenho do modelo de maneira adequada.
+
+## **Manuseio de Dados Temporais**
+Se lidar com dados temporais, considere a ordenação adequada e técnicas específicas para esse tipo de dado.
+
+## **Redução de Dimensionalidade**
+Aplique técnicas como PCA (Análise de Componentes Principais) se a dimensionalidade dos dados for muito alta.
+
+## **Validação Cruzada**
+Utilize validação cruzada para avaliar o desempenho do modelo de forma mais robusta.
+
+## **Monitoramento Contínuo**
+Atualize e adapte o pré-processamento conforme necessário ao longo do tempo, especialmente se os dados ou as condições do problema mudarem.
+
+Entre outras....
 
 # Descrição dos modelos
 
