@@ -8,94 +8,132 @@ Neste projeto, a limpeza de dados incluiu as seguintes etapas:
 
 - Remoção de expressões regulares(Urls, menções, hashtags e caracteres especiais);
 ```python 
-# Função de limpeza de texto para remover URLs, menções, hashtags, caracteres especiais e números
-def clean_text(text):
-    if pd.isnull(text):
-        return text
-    text = re.sub(r'http\S+', '', text)  # Remover URLs
-    text = re.sub(r"www.\S+",'', text)  # Remover URLs
-    text = re.sub('@[A-Za-z0-9_]+','',text)  # Remover menções
-    text = re.sub('#[A-Za-z0-9_]+','',text)  # Remover hashtags
-    text = re.sub(r'[^a-zA-Z\s]', '', text)  # Remover caracteres especiais e números
-    text = re.sub(r'\s+', ' ', text).strip()  # Remover espaços extras
-    return text
+def clean_url_mentions(text: str) -> str:
+"""Remove URLs e menções de usuários do texto.
 
-# Aplicando a limpeza de texto na coluna 'Language'. Foram encontrados links de imagens, o que não é relevante para a análise
-df['Language'] = df['Language'].astype(str).apply(clean_text)
+Args:
+    text (str): Texto original.
+    
+Returns:
+    str: Texto limpo sem URLs e menções.
+"""
+text = re.sub(r'http\S+', '', text)  # Remove URLs que começam com http
+text = re.sub(r"www.\S+", '', text)  # Remove URLs que começam com www
+text = re.sub(r'@[A-Za-z0-9_]+', '', text)  # Remove menções a usuários
+return text
 
-df.drop(df[df['Language'].astype(str).apply(lambda x: len(x) > 3)].index, inplace=True)
+def clean_hashtags_special_chars(text: str) -> str:
+"""Remove hashtags e caracteres especiais do texto.
 
-# Aplicando a limpeza de texto na coluna 'Text' para remover URLs, menções, hashtags, caracteres especiais e números
-df['Clean_Text'] = df['Text'].astype(str).apply(clean_text)
+Args:
+    text (str): Texto a ser limpo.
+    
+Returns:
+    str: Texto limpo de hashtags e caracteres não alfabéticos.
+"""
+text = re.sub(r'#[A-Za-z0-9_]+', '', text)  # Remove hashtags
+text = re.sub(r'[^a-zA-Z\s]', '', text)  # Remove caracteres que não são letras ou espaços
+return text
+
+def clean_text(text: str) -> str:
+"""Orquestra a limpeza de URLs, menções, hashtags e caracteres especiais no texto.
+
+Args:
+    text (str): Texto original possivelmente contendo URLs, menções, hashtags e caracteres especiais.
+
+Returns:
+    str: Texto limpo.
+"""
+if pd.isnull(text):
+    return ""
+text = clean_url_mentions(text)
+text = clean_hashtags_special_chars(text)
+return re.sub(r'\s+', ' ', text).strip()  # Reduz múltiplos espaços para um único espaço
 ```
 
 - Remoção de Stop Words (palavras comuns que aparecem com frequência, mas não agregam sentido/valor à frase, exemplo, artigos e preposições, o/a/um/e...);
 ```python
-# Remover stopwords
-stop_words_en = set(stopwords.words('english'))
+def remove_stopwords(text: str) -> str:
+"""Remove palavras de parada (stopwords) do texto.
 
-def remove_stopwords(text):
-    tokens = text.split()
-    filtered_tokens = [token.lower() for token in tokens if token.lower() not in stop_words_en]
-    return ' '.join(filtered_tokens)
+Args:
+    text (str): Texto original tokenizado.
 
-df_english.loc[:, 'Clean_Text'] = df_english['Clean_Text'].apply(remove_stopwords)
-```
-
-- Outliers, identificados usando os quantis 0.05 e 0.95 para o comprimento do texto, foram removidos para minimizar o viés nos resultados da análise;
-
-![Distribuição dos Sentimentos nos Textos em Inglês - Com Outliers](img/distribuicao_sentimentos_textos_ingles.png)
->Gráfico: Distribuição dos Sentimentos nos Textos em Inglês - Com Outliers
- 
-```python
-# Identificando outliers no comprimento do texto com base 
-outliers = df[(df['Text_Length'] > df['Text_Length'].quantile(0.95)) | (df['Text_Length'] < df['Text_Length'].quantile(0.05))]
-print("Outliers identificados:", len(outliers))
-```
->Outliers identificados: 88.239
-
-```python
-# Quantidade de outliers por rótulo
-outliers['Label'].value_counts()
-```
->`negative`: 29.282
->
->`positive`: 28.636
->
->`litigious`: 17.628
->
->`uncertainty`: 12.693
-
-```python
-# Removendo outliers com base no comprimento do texto (5% dos dados com menor e maior comprimento) para evitar viés na análise
-df_filtered = df[~((df['Text_Length'] > df['Text_Length'].quantile(0.95)) | (df['Text_Length'] < df['Text_Length'].quantile(0.05)))]
-```
-
-![Distribuição dos Sentimentos nos Textos em Inglês - Outliers Removidos](img/distribuicao_sentimentos_textos_ingles_removido_outliers.png)
->Gráfico: Distribuição dos Sentimentos nos Textos em Inglês - Outliers Removidos
-
-- Valores ausentes na coluna 'Language' foram tratados preenchendo-os com uma string vazia; 
-```python
-# Tratando valores ausentes na coluna 'Language', preenchendo com vazio ('') para evitar problemas na análise de texto
-df['Language'].fillna('', inplace=True)
+Returns:
+    str: Texto sem stopwords.
+"""
+tokens = word_tokenize(text)  # Tokeniza o texto em palavras individuais
+return ' '.join([token.lower() for token in tokens if token.lower() not in STOP_WORDS_EN])
 ```
 
 - Duplicatas foram eliminadas para evitar redundâncias que poderiam distorcer as análises;
 ```python
-# Remoção de duplicatas
-df.drop_duplicates(inplace=True)
+# Filtra por idioma inglês
+df_filtered = df_filtered.drop_duplicates(subset=['Clean_Text'])  # Remove textos duplicados
 ```
 
 - Limitação do escopo dos dados apenas para a linguagem inglesa.
+```python
+# Filtra por idioma inglês 
+df_filtered = df[(df['Language'] == 'en')].copy()
+```
 
 ![Distribuição de Quantidade de Tweets x Idiomas](img/distribuicao_idiomas_x_quantidade_twittes.png)
 >*Gráfico: Distribuição de Quantidade de Tweets x Idiomas*
 
-## **Feature Engineering**
-Crie novos atributos que possam ser mais informativos para o modelo; selecione características relevantes e descarte as menos importantes.
-
 ## **Tratamento de dados desbalanceados**
-Se as classes de interesse forem desbalanceadas, considere técnicas como oversampling, undersampling ou o uso de algoritmos que lidam naturalmente com desbalanceamento.
+>Valores antes do balanceamento dos rótulos:
+>
+>`positive`: 229.658
+>
+>`negative`: 221.604
+>
+>`uncertainty`: 188.989
+>
+>`litigious`: 164.189
+```python
+def balance_labels(df: pd.DataFrame, labels: List[str]) -> pd.DataFrame:
+"""Realiza undersampling para balancear os rótulos.
+
+Args:
+    df (pd.DataFrame): Dataframe com desbalanceamento de rótulos.
+    labels (List[str]): Lista de rótulos a serem balanceados.
+
+Returns:
+    pd.DataFrame: Dataframe com rótulos balanceados.
+"""
+label_counts = df['Label'].value_counts()
+min_count = label_counts.min()
+dfs = []
+for label in labels:
+    df_label = df[df['Label'] == label]
+    df_label_downsampled = resample(df_label, replace=False, n_samples=min_count, random_state=42)
+    dfs.append(df_label_downsampled)
+return pd.concat(dfs).sample(frac=1).reset_index(drop=True)
+
+# Balanço de Rótulos
+labels = ['positive', 'negative', 'uncertainty', 'litigious']
+df_balanced = balance_labels(df_processed, labels)
+print(df_balanced['Label'].value_counts())  # Mostra a distribuição dos rótulos após balanceamento
+```
+>Valores após balanceamento dos rótulos:
+>
+>`positive`: 164.189
+>
+>`negative`: 164.189
+>
+>`uncertainty`: 164.189
+>
+>`litigious`: 164.189
+
+Exemplo dos dados após realização do balanceamento dos rótulos:
+| |Clean_Text|Label|
+|-|----------|------|
+|0|maybe dont think theyd bigger pull big personally|`uncertainty`|
+|1|every time something bad happens kids nobody b...|`litigious`|
+|2|rhetorical question yes|`negative`|
+|3|brilliant account laugh good gets sides|`positive`|
+|4|wall accident|`negative`|
 
 ## **Separação de dados**
 Divida os dados em conjuntos de treinamento, validação e teste para avaliar o desempenho do modelo de maneira adequada.
