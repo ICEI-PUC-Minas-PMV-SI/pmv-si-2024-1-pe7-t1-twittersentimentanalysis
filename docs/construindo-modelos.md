@@ -164,7 +164,13 @@ Como parte da comprovação de construção dos modelos, um vídeo de demonstra�
 
 ## Métricas utilizadas
 
-Nesta seção, as métricas utilizadas para avaliar os modelos desenvolvidos deverão ser apresentadas (p. ex.: acurácia, precisão, recall, F1-Score, MSE etc.). A escolha de cada métrica deverá ser justificada, pois esta escolha é essencial para avaliar de forma mais assertiva a qualidade do modelo construído. 
+Para assegurar uma análise rigorosa e multifacetada dos modelos desenvolvidos, foram empregadas as seguintes métricas:
+
+* Acurácia: Esta métrica é crucial para avaliar a eficácia geral do modelo na classificação correta das entradas. No contexto deste estudo, a acurácia proporciona uma visão holística do desempenho do modelo, sendo particularmente útil para verificar sua aplicabilidade geral em diferentes conjuntos de dados.
+* Precisão: Fundamental em aplicações onde as consequências de falsos positivos são significativas, a precisão nos informa sobre a capacidade do modelo de não classificar como positivo um exemplo que é negativo. Essa métrica é vital para garantir a confiabilidade em aplicações sensíveis.
+* Revocação (Recall): Essencial para situações onde é crucial capturar todos os casos relevantes (positivos), a revocação é uma métrica que avalia a habilidade do modelo de encontrar todas as instâncias positivas. Em contextos onde o custo de perder uma instância positiva é alto, essa métrica torna-se indispensável.
+* F1-Score: Representando a média harmônica entre precisão e revocação, o F1-Score é especialmente útil quando se deseja um equilíbrio entre essas duas métricas, o que é comum em muitos contextos de classificação, onde ambas são igualmente importantes.
+* MSE (Erro Quadrático Médio): Embora mais comumente utilizado em problemas de regressão, o MSE pode ser adaptado para avaliar a performance em contextos de classificação ao quantificar a diferença entre os valores preditos e reais, oferecendo uma perspectiva adicional sobre o desempenho do modelo.
 
 ## Discussão dos resultados obtidos
 
