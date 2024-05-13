@@ -201,6 +201,14 @@ Este trabalho apresenta uma comparação entre dois modelos de redes neurais rec
 - **Perda em Teste**: V2 apresenta 0.0856 contra 0.0861 da V1, sugerindo uma leve superioridade em termos de ajuste ao conjunto de teste.
 - **Acurácia em Teste**: Ambos modelos alcançaram 97%, indicando uma alta capacidade de generalização para dados novos.
 
+### Modelos de Aprendizado de Máquina
+
+#### RandomForest
+Este modelo é um ensemble de árvores de decisão que funciona bem para classificações complexas. É notável pela sua capacidade de operar com uma grande quantidade de dados e características com bom desempenho e facilidade de interpretação.
+
+- *Melhores Hiperparâmetros*: 500 árvores com profundidade máxima de 50.
+- *Acurácia*: 94.99%
+- *ROC-AUC*: 0.9905, indicativo de excelente capacidade de distinção entre classes.
 
 # Pipeline de pesquisa e análise de dados
 
