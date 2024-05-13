@@ -224,6 +224,30 @@ Entre os modelos LSTM, não houve diferença significativa de acurácia, sugerin
 
 Comparando os modelos de redes neurais com os modelos de machine learning, observamos que ambos os LSTMs superaram os modelos clássicos em termos de acurácia. No entanto, os modelos clássicos apresentaram valores de ROC-AUC muito competitivos, refletindo uma excelente capacidade de classificação.
 
+### Conclusão
+
+Cada modelo tem suas forças dependendo do contexto de aplicação e das características do conjunto de dados. Os modelos LSTM Bidirecional provaram ser extremamente eficazes para análise de sentimentos, alcançando altas taxas de acurácia. Por outro lado, RandomForest e GradientBoosting mostraram-se robustos, com altos valores de ROC-AUC, sugerindo uma forte capacidade de separar as classes de sentimentos eficientemente. A escolha do modelo ideal deve considerar tanto a natureza dos dados quanto as exigências específicas da tarefa em questão.
+
+### Tabela Comparativa dos Modelos
+
+| *Característica*  | *LSTM V2 Bidirecional*  | *LSTM V1 Bidirecional*  | *RandomForest*  | *GradientBoostingClassifier*  |
+|-------------------------------------|-------------------------------------|-------------------------------------|-------------------------------------|-------------------------------------|
+| *Taxa de Aprendizado (Learning Rate)* | 0.001  | 0.0001  | N/A  | 0.01  |
+| *Dimensões do Embedding*  | 512  | 512  | N/A  | N/A  |
+| *Dimensões Ocultas*  | 512  | 512  | N/A  | N/A  |
+| *Número de Camadas*  | 3  | 3  | N/A  | N/A  |
+| *Dimensão da Saída*  | 4 (classes de sentimento)  | 4 (classes de sentimento)  | N/A  | N/A  |
+| *Taxa de Dropout*  | 0.5  | 0.5  | N/A  | N/A  |
+| *Número de Épocas*  | 50  | 50  | N/A  | N/A  |
+| *Tamanho do Lote (Batch Size)*  | 64  | 64  | N/A  | N/A  |
+| *Semente (Seed)*  | 42  | 42  | 42  | 42  |
+| *Comprimento Máximo de Texto*  | 128  | 128  | N/A  | N/A  |
+| *Perda em Teste*  | 0.0856  | 0.0861  | N/A  | N/A  |
+| *Acurácia em Teste*  | 97%  | 97%  | 94.99%  | 94.42%  |
+| *ROC-AUC*  | N/A  | N/A  | 0.9905  | 0.9875  |
+| *Relatório de Classificação*  | N/A  | N/A  | Ver detalhes de precisão, recall e f1-score  | Ver detalhes de precisão, recall e f1-score |
+| *Melhores Hiperparâmetros*  | N/A  | N/A  | {'clf_n_estimators': 500, 'clfmax_depth': 50} | {'clfn_estimators': 500, 'clf_learning_rate': 0.01} |
+
 # Pipeline de pesquisa e análise de dados
 
 Em pesquisa e experimentação em sistemas de informação, um pipeline de pesquisa e análise de dados refere-se a um conjunto organizado de processos e etapas que um profissional segue para realizar a coleta, preparação, análise e interpretação de dados durante a fase de pesquisa e desenvolvimento de modelos. Esse pipeline é essencial para extrair _insights_ significativos, entender a natureza dos dados e, construir modelos de aprendizado de máquina eficazes. 
