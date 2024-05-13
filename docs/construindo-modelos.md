@@ -254,6 +254,8 @@ O gráfico apresentado oferece uma visão comparativa da acurácia e do ROC-AUC 
 
 #### Detalhes do Gráfico:
 
+![Comparação de Acurácia e ROC-AUC dos Modelos](img/grafico_aucroc_acc.png)
+
 - **Acurácia (%)**: Representada pelas barras azuis, indica a porcentagem de previsões corretas que cada modelo conseguiu alcançar sobre o conjunto de teste. Os modelos LSTM V2 e V1 mostram um desempenho equivalente, ambos com acurácia de 97%. Em contrapartida, os modelos RandomForest e GradientBoostingClassifier apresentam uma acurácia ligeiramente inferior, com 94,99% e 94,42%, respectivamente.
   
 - **ROC-AUC (%)**: Ilustrado pela linha vermelha, mede a capacidade de cada modelo de distinguir entre as classes alvo. Valores mais altos indicam melhor desempenho, com o RandomForest alcançando um ROC-AUC de aproximadamente 99,05% e o GradientBoostingClassifier com 98,75%. A ausência de dados de ROC-AUC para os modelos LSTM se deve à sua natureza e aplicação específica, que não necessariamente requere essa métrica para validação de desempenho.
