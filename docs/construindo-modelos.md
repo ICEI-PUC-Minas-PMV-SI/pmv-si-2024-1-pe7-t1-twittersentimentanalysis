@@ -176,7 +176,31 @@ Para assegurar uma análise rigorosa e multifacetada dos modelos desenvolvidos, 
   
 ## Discussão dos resultados obtidos
 
-Nesta seção, discuta os resultados obtidos pelos modelos construídos, no contexto prático em que os dados se inserem, promovendo uma compreensão abrangente e aprofundada da qualidade de cada um deles. Lembre-se de relacionar os resultados obtidos ao problema identificado, a questão de pesquisa levantada e estabelecendo relação com os objetivos previamente propostos. 
+### Introdução
+
+Este trabalho apresenta uma comparação entre dois modelos de redes neurais recorrentes, especificamente as versões V1 e V2 do LSTM Bidirecional, e dois modelos de aprendizado de máquina clássicos, RandomForest e GradientBoostingClassifier. O objetivo é avaliar qual modelo oferece melhor desempenho na análise de sentimentos, considerando diversas métricas de avaliação e parâmetros de configuração.
+
+### Modelos de Redes Neurais - LSTM Bidirecional
+
+**LSTM (Long Short-Term Memory)** é uma variante das redes neurais recorrentes, desenhada para melhor capturar dependências de longo prazo. O uso do modelo bidirecional permite que a rede tenha visão dos dados tanto no passado quanto no futuro, o que é ideal para tarefas de processamento de linguagem natural, como a análise de sentimentos.
+
+#### Configurações Comuns:
+
+- **Dimensões do Embedding e Camadas Ocultas**: 512
+- **Número de Camadas**: 3
+- **Taxa de Dropout**: 0.5, para mitigar overfitting
+- **Número de Épocas**: 50
+- **Tamanho do Lote**: 64
+- **Comprimento Máximo de Texto**: 128 caracteres
+
+#### Diferenças:
+- **Taxa de Aprendizado (Learning Rate)**: V2 usa 0.001 enquanto V1 usa 0.0001. A taxa mais alta pode acelerar a convergência mas requer cautela para não ultrapassar mínimos locais na otimização.
+
+#### Métricas de Desempenho:
+
+- **Perda em Teste**: V2 apresenta 0.0856 contra 0.0861 da V1, sugerindo uma leve superioridade em termos de ajuste ao conjunto de teste.
+- **Acurácia em Teste**: Ambos modelos alcançaram 97%, indicando uma alta capacidade de generalização para dados novos.
+
 
 # Pipeline de pesquisa e análise de dados
 
