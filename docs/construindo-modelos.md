@@ -248,6 +248,26 @@ Cada modelo tem suas forças dependendo do contexto de aplicação e das caracte
 | *Relatório de Classificação*  | N/A  | N/A  | Ver detalhes de precisão, recall e f1-score  | Ver detalhes de precisão, recall e f1-score |
 | *Melhores Hiperparâmetros*  | N/A  | N/A  | {'clf_n_estimators': 500, 'clfmax_depth': 50} | {'clfn_estimators': 500, 'clf_learning_rate': 0.01} |
 
+### Gráfico Comparativo de Acurácia e ROC-AUC
+ 
+O gráfico apresentado oferece uma visão comparativa da acurácia e do ROC-AUC para quatro modelos distintos: dois modelos de LSTM Bidirecional (V2 e V1) e dois modelos de aprendizado de máquina clássicos (RandomForest e GradientBoostingClassifier).
+
+#### Detalhes do Gráfico:
+
+- **Acurácia (%)**: Representada pelas barras azuis, indica a porcentagem de previsões corretas que cada modelo conseguiu alcançar sobre o conjunto de teste. Os modelos LSTM V2 e V1 mostram um desempenho equivalente, ambos com acurácia de 97%. Em contrapartida, os modelos RandomForest e GradientBoostingClassifier apresentam uma acurácia ligeiramente inferior, com 94,99% e 94,42%, respectivamente.
+  
+- **ROC-AUC (%)**: Ilustrado pela linha vermelha, mede a capacidade de cada modelo de distinguir entre as classes alvo. Valores mais altos indicam melhor desempenho, com o RandomForest alcançando um ROC-AUC de aproximadamente 99,05% e o GradientBoostingClassifier com 98,75%. A ausência de dados de ROC-AUC para os modelos LSTM se deve à sua natureza e aplicação específica, que não necessariamente requere essa métrica para validação de desempenho.
+
+#### Interpretação:
+
+- A acurácia uniforme dos modelos LSTM sugere que a variação na taxa de aprendizado entre as versões V2 e V1 não teve impacto significativo no desempenho de classificação final, ambos alcançando excelentes resultados.
+- Apesar de uma acurácia ligeiramente menor, os modelos RandomForest e GradientBoosting demonstram forte capacidade de discriminação, como indicado pelos valores de ROC-AUC, sugerindo que eles são muito eficazes em separar positivamente as classes verdadeiras das falsas.
+
+### Conclusão:
+
+Este gráfico não apenas destaca as competências específicas de cada modelo em termos numéricos, mas também facilita a compreensão visual do equilíbrio entre acurácia e capacidade discriminativa. Os modelos são robustos e apresentam desempenhos notáveis, cada um dentro de seu contexto de aplicação, com os modelos de machine learning mostrando uma vantagem distinta em termos de ROC-AUC. Assim, a escolha do modelo mais apropriado deve ser guiada pelo objetivo específico da análise e pelas características do dataset trabalhado.
+
+
 # Pipeline de pesquisa e análise de dados
 
 Em pesquisa e experimentação em sistemas de informação, um pipeline de pesquisa e análise de dados refere-se a um conjunto organizado de processos e etapas que um profissional segue para realizar a coleta, preparação, análise e interpretação de dados durante a fase de pesquisa e desenvolvimento de modelos. Esse pipeline é essencial para extrair _insights_ significativos, entender a natureza dos dados e, construir modelos de aprendizado de máquina eficazes. 
