@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   background-color: #80c8b6;
-  height: 100vh;
+  min-height: 100vh;
   padding-top: 7rem;
   flex-direction: column;
   gap: 2rem;
@@ -115,4 +115,98 @@ export const SentimentResultLitigious = styled(SentimentResultPositive)`
 
 export const SentimentResultUncertainty = styled(SentimentResultPositive)`
   background-color: #e9f4e0;
+`;
+
+export const CardContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 120rem;
+  flex-wrap: wrap;
+  z-index: 1;
+  padding-bottom: 15rem;
+`;
+
+export const Card = styled.div`
+  position: relative;
+  width: 28rem;
+  height: 40rem;
+  margin: 3rem;
+  box-shadow: 2rem 2rem 5rem rgba(0, 0, 0, 0.5);
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  justify-content: center;
+  border-top: 0.1rem solid rgba(255, 255, 255, 05);
+  border-left: 0.1rem solid rgba(255, 255, 255, 05);
+
+  &:hover {
+    transform: scale(1.03);
+  }
+`;
+
+export const Content = styled.div`
+  padding: 2rem;
+  text-align: center;
+  flex-direction: column;
+  display: flex;
+  gap: 1rem;
+`;
+
+export const H3 = styled.h3`
+  font-size: 2.5rem;
+  color: #fff;
+  z-index: 1;
+  font-family: "Platypi";
+`;
+
+export const P = styled.p`
+  font-size: 2rem;
+  color: #fff;
+  font-weight: 300;
+  font-family: "Platypi";
+`;
+
+export const ErrorModal = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.6rem;
+  gap: 1.2rem;
+  background: rgba(255, 100, 100, 0.8);
+  border-radius: 1.5rem;
+  border-top: 0.1rem solid rgba(255, 255, 255, 05);
+  border-left: 0.1rem solid rgba(255, 255, 255, 05);
+  color: white;
+  font-size: 2rem;
+  font-family: "Platypi";
+
+  @media (max-width: 561px) {
+    width: 80%;
+  }
+
+  @media (max-width: 355px) {
+    width: 90%;
+  }
+`;
+
+export const ModalButton = styled(Button)`
+  width: 60%;
+  font-size: 2rem;
+  background-color: #cc1717;
+
+  &:hover {
+    background-color: #f17a7a;
+  }
+
+  @media (max-width: 726px) {
+    width: 80%;
+  }
 `;
