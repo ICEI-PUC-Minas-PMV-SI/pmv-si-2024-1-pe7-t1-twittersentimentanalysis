@@ -210,6 +210,20 @@ Este modelo é um ensemble de árvores de decisão que funciona bem para classif
 - *Acurácia*: 94.99%
 - *ROC-AUC*: 0.9905, indicativo de excelente capacidade de distinção entre classes.
 
+#### GradientBoostingClassifier
+
+Um modelo baseado em boosting que constrói sequencialmente árvores de decisão de forma corretiva. É frequentemente elogiado pela precisão em conjuntos de dados heterogêneos e complexos.
+
+- *Melhores Hiperparâmetros*: 500 árvores com taxa de aprendizado de 0.01.
+- *Acurácia*: 94.42%
+- *ROC-AUC*: 0.9875
+
+### Análise Comparativa
+
+Entre os modelos LSTM, não houve diferença significativa de acurácia, sugerindo que a variação na taxa de aprendizado não impactou drasticamente o resultado final. No entanto, a escolha entre uma taxa mais alta ou mais baixa pode afetar a velocidade de convergência e a estabilidade durante o treinamento.
+
+Comparando os modelos de redes neurais com os modelos de machine learning, observamos que ambos os LSTMs superaram os modelos clássicos em termos de acurácia. No entanto, os modelos clássicos apresentaram valores de ROC-AUC muito competitivos, refletindo uma excelente capacidade de classificação.
+
 # Pipeline de pesquisa e análise de dados
 
 Em pesquisa e experimentação em sistemas de informação, um pipeline de pesquisa e análise de dados refere-se a um conjunto organizado de processos e etapas que um profissional segue para realizar a coleta, preparação, análise e interpretação de dados durante a fase de pesquisa e desenvolvimento de modelos. Esse pipeline é essencial para extrair _insights_ significativos, entender a natureza dos dados e, construir modelos de aprendizado de máquina eficazes. 
