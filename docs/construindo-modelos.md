@@ -136,29 +136,174 @@ Exemplo dos dados após realização do balanceamento dos rótulos:
 |4|wall accident|`negative`|
 
 ## **Separação de dados**
-Divida os dados em conjuntos de treinamento, validação e teste para avaliar o desempenho do modelo de maneira adequada.
+
+Dividimos os dados em três conjuntos distintos para garantir uma avaliação precisa e eficaz do desempenho dos modelos:
+
+* Conjunto de Treinamento: Utilizado para treinar os modelos. Representa 80% dos dados disponíveis.
+* Conjunto de Validação: Utilizado durante a validação cruzada para ajuste de hiperparâmetros.
+* Conjunto de Teste: Utilizado para avaliar a performance final dos modelos. Representa 20% dos dados.
+
+```python
+
+def prepare_data(df: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, LabelEncoder]:
+    df['Clean_Text_LSTM'] = df['Clean_Text_LSTM'].fillna('').astype(str)
+    texts = df['Clean_Text_LSTM'].apply(lambda x: x.split()).values
+    
+    encoder = LabelEncoder()
+    labels = encoder.fit_transform(df['Label'])
+    
+    # Imprime os labels e seus códigos
+    print("Classes codificadas e seus códigos:")
+    for label, code in zip(encoder.classes_, range(len(encoder.classes_))):
+        print(f"Label '{label}' é codificado como {code}")
+    print("")
+    
+    return train_test_split(texts, labels, test_size=0.2, random_state=42, stratify=labels), encoder
+
+```
 
 ## **Manuseio de Dados Temporais**
-Se lidar com dados temporais, considere a ordenação adequada e técnicas específicas para esse tipo de dado.
+
+Como o dataset utilizado para análise de sentimentos no Twitter não possui uma variável de tempo, o manuseio de dados temporais não se aplica neste caso. Portanto, essa etapa é ignorada no pipeline de preparação de dados.
+
 
 ## **Redução de Dimensionalidade**
-Aplique técnicas como PCA (Análise de Componentes Principais) se a dimensionalidade dos dados for muito alta.
+
+Como o dataset possui apenas a variável de texto, técnicas de redução de dimensionalidade como PCA não são necessárias. A vetorização do texto usando técnicas como TF-IDF já proporciona uma representação adequada dos dados em um espaço de menor dimensão.
 
 ## **Validação Cruzada**
-Utilize validação cruzada para avaliar o desempenho do modelo de forma mais robusta.
+
+Utilizamos a técnica de validação cruzada para garantir a robustez do modelo e avaliar seu desempenho de forma mais confiável.
+
+```python
+from sklearn.model_selection import cross_val_score
+from sklearn.ensemble import RandomForestClassifier
+
+# Definindo o modelo
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+
+# Validação cruzada
+scores = cross_val_score(model, X_reduced, train_data['Label'], cv=5)
+print(f'Scores de validação cruzada: {scores}')
+```
 
 ## **Monitoramento Contínuo**
-Atualize e adapte o pré-processamento conforme necessário ao longo do tempo, especialmente se os dados ou as condições do problema mudarem.
 
-Entre outras....
+Implementamos um pipeline de monitoramento contínuo para ajustar e adaptar o pré-processamento conforme necessário ao longo do tempo. Esse pipeline inclui a reavaliação periódica dos dados e dos modelos para garantir que permanecem eficazes e relevantes.
+
+```python
+
+# Placeholder para um exemplo de monitoramento contínuo
+def monitor_model_performance():
+    # Reavaliar a performance do modelo periodicamente
+    # Re-treinar e ajustar o modelo se necessário
+    pass
+
+# Chamada periódica da função de monitoramento (exemplo usando um agendador de tarefas)
+import schedule
+import time
+
+schedule.every().day.at("00:00").do(monitor_model_performance)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+```
 
 # Descrição dos modelos
 
-Nesta seção, conhecendo os dados e de posse dos dados preparados, é hora de descrever os algoritmos de aprendizado de máquina selecionados para a construção dos modelos propostos. Inclua informações abrangentes sobre cada algoritmo implementado, aborde conceitos fundamentais, princípios de funcionamento, vantagens/limitações e justifique a escolha de cada um dos algoritmos. 
+Nesta seção, apresentamos uma descrição detalhada dos algoritmos de aprendizado de máquina utilizados na construção dos modelos de análise de sentimentos. Abordamos os conceitos fundamentais, princípios de funcionamento, vantagens e limitações de cada algoritmo, além de justificar a escolha dos mesmos.
 
-Explore aspectos específicos, como o ajuste dos parâmetros livres de cada algoritmo. Lembre-se de experimentar parâmetros diferentes e principalmente, de justificar as escolhas realizadas.
+## Modelos de Redes Neurais - LSTM Bidirecional
 
-Como parte da comprovação de construção dos modelos, um vídeo de demonstração com todas as etapas de pré-processamento e de execução dos modelos deverá ser entregue. Este vídeo poderá ser do tipo _screencast_ e é imprescindível a narração contemplando a demonstração de todas as etapas realizadas.
+### Conceito e Funcionamento
+
+As Redes Neurais Recorrentes (RNNs) são uma classe de redes neurais adequada para dados sequenciais, como texto. Dentro dessa classe, a arquitetura Long Short-Term Memory (LSTM) é uma variante que resolve o problema de dependência de longo prazo, possibilitando a manutenção de informações relevantes ao longo de extensas sequências. No caso do LSTM Bidirecional, a arquitetura é estendida para processar a informação em ambas as direções (frente e verso), proporcionando um contexto mais completo para cada ponto da sequência.
+
+### Configurações Utilizadas
+
+- **Dimensões do Embedding e Camadas Ocultas**: 512
+- **Número de Camadas**: 3
+- **Taxa de Dropout**: 0.5
+- **Número de Épocas**: 50
+- **Tamanho do Lote**: 64
+- **Comprimento Máximo de Texto**: 128 caracteres
+
+### Justificativa da Escolha
+
+O modelo LSTM Bidirecional foi escolhido devido à sua capacidade de capturar dependências de longo prazo e seu desempenho comprovado em tarefas de Processamento de Linguagem Natural (PLN). A bidirecionalidade oferece uma vantagem adicional ao considerar o contexto completo de cada palavra no texto, o que é crucial para a análise de sentimentos.
+
+### Variações e Hiperparâmetros
+
+- **LSTM Bidirecional V1**: Taxa de aprendizado de 0.0001.
+- **LSTM Bidirecional V2**: Taxa de aprendizado de 0.001.
+
+A variação na taxa de aprendizado foi introduzida para investigar seu impacto na convergência e estabilidade do treinamento.
+
+## Modelos de Aprendizado de Máquina Clássicos
+
+### RandomForest
+
+#### Conceito e Funcionamento
+
+RandomForest é um método de ensemble learning que utiliza múltiplas árvores de decisão para melhorar a precisão e evitar overfitting. Cada árvore é treinada com um subconjunto aleatório dos dados e características, e a decisão final é baseada na média ou maioria das predições individuais das árvores.
+
+#### Configurações Utilizadas
+
+- **Número de Árvores**: 500
+- **Profundidade Máxima**: 50
+- **Critérios de Divisão**: `gini`
+
+#### Justificativa da Escolha
+
+RandomForest foi escolhido devido à sua robustez e capacidade de lidar com datasets de alta dimensionalidade e variabilidade. É eficaz em evitar overfitting e proporciona uma boa interpretação dos dados através da análise de importância das características.
+
+### GradientBoostingClassifier
+
+#### Conceito e Funcionamento
+
+GradientBoostingClassifier é um método de boosting que constrói árvores de decisão sequencialmente, onde cada nova árvore corrige os erros das anteriores. Este método é conhecido por sua alta precisão e capacidade de ajuste fino aos dados.
+
+#### Configurações Utilizadas
+
+- **Número de Árvores**: 500
+- **Taxa de Aprendizado**: 0.01
+- **Profundidade Máxima**: 3
+
+#### Justificativa da Escolha
+
+GradientBoostingClassifier foi escolhido pela sua habilidade de melhorar progressivamente o desempenho através do ajuste de erros residuais. É particularmente útil em datasets complexos e heterogêneos, oferecendo um alto grau de precisão.
+
+## Ajuste de Hiperparâmetros
+
+Para ambos os modelos clássicos, utilizamos a busca em grade (Grid Search) e a busca aleatória (Randomized Search) para identificar as melhores combinações de hiperparâmetros. A validação cruzada foi aplicada para garantir a robustez dos modelos e prevenir overfitting.
+
+### Exemplo de Pipeline de Busca Aleatória
+
+```python
+from sklearn.model_selection import RandomizedSearchCV
+
+# Definição do pipeline
+pipeline = Pipeline([
+    ('clf', RandomForestClassifier(random_state=42))
+])
+
+# Parâmetros para busca aleatória
+param_grid = {
+    'clf__n_estimators': [100, 300, 500],
+    'clf__max_depth': [10, 30, 50],
+    'clf__min_samples_split': [2, 5, 10],
+    'clf__min_samples_leaf': [1, 2, 4],
+    'clf__max_features': ['auto', 'sqrt', 'log2']
+}
+
+# Configuração da busca aleatória
+search = RandomizedSearchCV(pipeline, param_grid, n_iter=100, cv=5, scoring='accuracy', n_jobs=-1, verbose=2, random_state=42)
+search.fit(X_train_tfidf, y_train)
+
+# Melhores hiperparâmetros
+print(search.best_params_)
+```
 
 # Avaliação dos modelos criados
 
