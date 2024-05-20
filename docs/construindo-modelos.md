@@ -191,25 +191,6 @@ print(f'Scores de validação cruzada: {scores}')
 
 Implementamos um pipeline de monitoramento contínuo para ajustar e adaptar o pré-processamento conforme necessário ao longo do tempo. Esse pipeline inclui a reavaliação periódica dos dados e dos modelos para garantir que permanecem eficazes e relevantes.
 
-```python
-
-# Placeholder para um exemplo de monitoramento contínuo
-def monitor_model_performance():
-    # Reavaliar a performance do modelo periodicamente
-    # Re-treinar e ajustar o modelo se necessário
-    pass
-
-# Chamada periódica da função de monitoramento (exemplo usando um agendador de tarefas)
-import schedule
-import time
-
-schedule.every().day.at("00:00").do(monitor_model_performance)
-
-while True:
-    schedule.run_pending()
-    time.sleep(1)
-```
-
 # Descrição dos modelos
 
 Nesta seção, apresentamos uma descrição detalhada dos algoritmos de aprendizado de máquina utilizados na construção dos modelos de análise de sentimentos. Abordamos os conceitos fundamentais, princípios de funcionamento, vantagens e limitações de cada algoritmo, além de justificar a escolha dos mesmos.
@@ -339,6 +320,7 @@ Este trabalho apresenta uma comparação entre dois modelos de redes neurais rec
 - **Comprimento Máximo de Texto**: 128 caracteres
 
 #### Diferenças:
+
 - **Taxa de Aprendizado (Learning Rate)**: V2 usa 0.001 enquanto V1 usa 0.0001. A taxa mais alta pode acelerar a convergência mas requer cautela para não ultrapassar mínimos locais na otimização.
 
 #### Métricas de Desempenho:
