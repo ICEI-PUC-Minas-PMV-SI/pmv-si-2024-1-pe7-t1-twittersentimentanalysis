@@ -375,6 +375,19 @@ Cada modelo tem suas forças dependendo do contexto de aplicação e das caracte
 | *Relatório de Classificação*  | N/A  | N/A  | Ver detalhes de precisão, recall e f1-score  | Ver detalhes de precisão, recall e f1-score |
 | *Melhores Hiperparâmetros*  | N/A  | N/A  | {'clf_n_estimators': 500, 'clfmax_depth': 50} | {'clfn_estimators': 500, 'clf_learning_rate': 0.01} |
 
+#### Recursos Computacionais
+
+O treinamento dos modelos de análise de sentimentos, incluindo as arquiteturas LSTM Bidirecional, RandomForest e GradientBoostingClassifier, foi realizado em um sistema computacional com configurações de hardware adequadas para lidar com tarefas intensivas de aprendizado de máquina. As especificações do sistema são as seguintes:
+
+| Componente | Especificação |
+|-|-|
+| Placa de Vídeo | ASUS ROG STRIX RTX 3060 V2 LHR (NVIDIA GeForce RTX 3060) |
+| Processador | AMD Ryzen 7 3800X 8-Core Processor 3.90 GHz |
+| Memória RAM | DDR4 32 GB (DDR4-3597 / PC4-28700 DDR4 SDRAM UDIMM) |
+| Placa Mãe | ASUS TUF GAMING X570-PLUS_BR |
+| Armazenamento | WD_BLACK SN750 NVMe 1TB M.2 2280 |
+| Sistema Operacional | Microsoft Windows 11 Professional (x64) Build 22631.3593 (23H2) |
+
 ### Gráfico Comparativo de Acurácia e ROC-AUC
  
 O gráfico apresentado oferece uma visão comparativa da acurácia e do ROC-AUC para quatro modelos distintos: dois modelos de LSTM Bidirecional (V2 e V1) e dois modelos de aprendizado de máquina clássicos (RandomForest e GradientBoostingClassifier).
@@ -391,11 +404,6 @@ O gráfico apresentado oferece uma visão comparativa da acurácia e do ROC-AUC 
 
 - A acurácia uniforme dos modelos LSTM sugere que a variação na taxa de aprendizado entre as versões V2 e V1 não teve impacto significativo no desempenho de classificação final, ambos alcançando excelentes resultados.
 - Apesar de uma acurácia ligeiramente menor, os modelos RandomForest e GradientBoosting demonstram forte capacidade de discriminação, como indicado pelos valores de ROC-AUC, sugerindo que eles são muito eficazes em separar positivamente as classes verdadeiras das falsas.
-
-### Conclusão:
-
-Este gráfico não apenas destaca as competências específicas de cada modelo em termos numéricos, mas também facilita a compreensão visual do equilíbrio entre acurácia e capacidade discriminativa. Os modelos são robustos e apresentam desempenhos notáveis, cada um dentro de seu contexto de aplicação, com os modelos de machine learning mostrando uma vantagem distinta em termos de ROC-AUC. Assim, a escolha do modelo mais apropriado deve ser guiada pelo objetivo específico da análise e pelas características do dataset trabalhado.
-
 
 # Pipeline de pesquisa e análise de dados
 
