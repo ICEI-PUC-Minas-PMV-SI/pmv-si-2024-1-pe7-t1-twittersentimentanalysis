@@ -503,5 +503,49 @@ Embora os modelos de aprendizado de máquina clássicos, como RandomForest e Gra
 
 No entanto, é importante ressaltar que a escolha do modelo mais adequado depende do contexto específico da aplicação, dos requisitos de desempenho, dos recursos computacionais disponíveis e das restrições operacionais. Em alguns casos, os modelos de aprendizado de máquina clássicos podem ser preferíveis devido à sua interpretabilidade, eficiência computacional ou facilidade de implantação.
 
-![Fluxograma PipeLine](img/pipeFlux.svg)
->*Fluxograma:  PipeLine*
+```mermaid
+graph LR
+    A[1 - Compreensão e Análise Exploratória dos Dados] --> B[2 - Limpeza e Preparação dos Dados]
+    B --> C[3 - Tratamento de Dados Desbalanceados]
+    C --> D[4 - Separação de Dados]
+    D --> E[5 - Construção e Avaliação de Modelos]
+    E --> F[6 - Avaliação de Desempenho e Comparação de Modelos]
+    F --> G[7 - Escolha do Modelo LSTM Bidirecional para Implantação em Produção]
+
+    A --> A1[Análise de Medidas de Tendência Central e Dispersão]
+    A --> A2[Visualização de Dados]
+    A --> A3[Análise Univariada]
+    A --> A4[Análise Bivariada]
+    A --> A5[Identificação de Outliers]
+
+    B --> B1[Remoção de Expressões Regulares]
+    B --> B2[Remoção de Stop Words]
+    B --> B3[Tratamento de Valores Ausentes]
+    B --> B4[Remoção de Duplicatas]
+    B --> B5[Limitação de Escopo a um Idioma]
+    B --> B6[Engenharia de Recursos]
+
+    C --> C1[Balanceamento dos Dados]
+
+    D --> D1[Conjunto de Treinamento]
+    D --> D2[Conjunto de Validação]
+    D --> D3[Conjunto de Teste]
+
+    E --> E1[LSTM Bidirecional V1 e V2]
+    E --> E2[RandomForest]
+    E --> E3[GradientBoostingClassifier]
+
+    F --> F1[Acurácia]
+    F --> F2[Precisão]
+    F --> F3[Revocação]
+    F --> F4[F1-Score]
+    F --> F5[ROC-AUC]
+
+    G --> G1[Desempenho Superior]
+    G --> G2[Capacidade de Capturar Dependências de Longo Prazo]
+    G --> G3[Bidirecionalidade]
+    G --> G4[Generalização Robusta]
+    G --> G5[Tratamento Nativo de Dados Sequenciais]
+    G --> G6[Flexibilidade e Escalabilidade]
+``` 
+>*Fluxograma: Pipeline*
