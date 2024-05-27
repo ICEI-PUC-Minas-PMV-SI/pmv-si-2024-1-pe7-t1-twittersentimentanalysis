@@ -502,3 +502,6 @@ Com base nos resultados obtidos e na análise comparativa realizada, o modelo LS
 Embora os modelos de aprendizado de máquina clássicos, como RandomForest e GradientBoostingClassifier, tenham demonstrado desempenhos competitivos, especialmente em termos de ROC-AUC, a superioridade dos modelos LSTM na acurácia de classificação de sentimentos, juntamente com suas características intrínsecas de captura de dependências de longo prazo e tratamento nativo de dados sequenciais, os tornam a escolha preferencial para implantação em um ambiente de produção robusto e escalável.
 
 No entanto, é importante ressaltar que a escolha do modelo mais adequado depende do contexto específico da aplicação, dos requisitos de desempenho, dos recursos computacionais disponíveis e das restrições operacionais. Em alguns casos, os modelos de aprendizado de máquina clássicos podem ser preferíveis devido à sua interpretabilidade, eficiência computacional ou facilidade de implantação.
+
+![Fluxograma PipeLine](img/pipeFlux.svg)
+>*Fluxograma:  PipeLine*
