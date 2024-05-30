@@ -7,6 +7,7 @@ from src.model import SentimentLSTM
 from src.utils import clean_text, remove_stopwords
 from nltk.tokenize import TweetTokenizer
 from joblib import load
+import threading
 
 app = Flask(__name__)
 
@@ -23,21 +24,24 @@ CONFIG = {
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Carregar vocabulário e LabelEncoder do disco
-with open(os.path.join(CONFIG['models_dir'], 'vocab.pkl'), 'rb') as f:
-    vocab = pickle.load(f)
-with open(os.path.join(CONFIG['models_dir'], 'label_encoder.pkl'), 'rb') as f:
-    label_encoder = pickle.load(f)
-with open(os.path.join(CONFIG['models_dir'], 'label_encoder_rfgb.joblib'), 'rb') as f:
-    label_enconder_rfgb = load(f)
+def load_models():
+    global vocab, label_encoder, label_encoder_rfgb, model_lstm, model_rf, model_gb
+    with open(os.path.join(CONFIG['models_dir'], 'vocab.pkl'), 'rb') as f:
+        vocab = pickle.load(f)
+    with open(os.path.join(CONFIG['models_dir'], 'label_encoder.pkl'), 'rb') as f:
+        label_encoder = pickle.load(f)
+    with open(os.path.join(CONFIG['models_dir'], 'label_encoder_rfgb.joblib'), 'rb') as f:
+        label_encoder_rfgb = load(f)
 
-# Carregar modelos treinados
-model_lstm = SentimentLSTM(len(vocab), CONFIG).to(device)
-model_lstm.load_state_dict(torch.load(os.path.join(CONFIG['models_dir'], 'sentiment_lstm_model.pth'), map_location=torch.device('cpu')))
-model_lstm.eval()
+    model_lstm = SentimentLSTM(len(vocab), CONFIG).to(device)
+    model_lstm.load_state_dict(torch.load(os.path.join(CONFIG['models_dir'], 'sentiment_lstm_model.pth'), map_location=device))
+    model_lstm.eval()
 
-model_rf = load(os.path.join(CONFIG['models_dir'], 'random_forest.joblib'))
-model_gb = load(os.path.join(CONFIG['models_dir'], 'gradient_boosting.joblib'))
+    model_rf = load(os.path.join(CONFIG['models_dir'], 'random_forest.joblib'))
+    model_gb = load(os.path.join(CONFIG['models_dir'], 'gradient_boosting.joblib'))
+
+load_thread = threading.Thread(target=load_models)
+load_thread.start()
 
 def tokenize_and_encode(text, vocab):
     tokenizer = TweetTokenizer()
@@ -48,18 +52,18 @@ def tokenize_and_encode(text, vocab):
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.json
-    text = data['text']
+    text = data.get('text')
     
     if not text:
         return jsonify({"error": "Faltando o parâmetro 'text'."}), 400
     
     cleaned_text = clean_text(text)
-    encoded_text = torch.tensor(tokenize_and_encode(cleaned_text, vocab), dtype=torch.int64)
+    encoded_text = torch.tensor(tokenize_and_encode(cleaned_text, vocab), dtype=torch.int64).to(device)
 
     cleaned_text_rdf_gdb = remove_stopwords(cleaned_text)
 
     with torch.no_grad():
-        input_text = encoded_text.unsqueeze(0).to(device)
+        input_text = encoded_text.unsqueeze(0)
         output_lstm = model_lstm(input_text)
         prediction_lstm = F.softmax(output_lstm, dim=1).cpu().numpy()[0]
 
@@ -67,13 +71,11 @@ def predict():
     predicted_label_lstm = label_encoder.inverse_transform([predicted_class_lstm])[0]
     predicted_probability_lstm = prediction_lstm[predicted_class_lstm]
 
-    # RandomForest predictions
     prediction_rf = model_rf.predict_proba([cleaned_text_rdf_gdb])[0]
-    prediction_rf_label = label_enconder_rfgb.inverse_transform([prediction_rf.argmax()])[0]
+    prediction_rf_label = label_encoder_rfgb.inverse_transform([prediction_rf.argmax()])[0]
 
-    # GradientBoosting predictions
     prediction_gb = model_gb.predict_proba([cleaned_text_rdf_gdb])[0]
-    prediction_gb_label = label_enconder_rfgb.inverse_transform([prediction_gb.argmax()])[0]
+    prediction_gb_label = label_encoder_rfgb.inverse_transform([prediction_gb.argmax()])[0]
 
     response = {
         "text": text,
@@ -94,4 +96,5 @@ def predict():
     return jsonify(response)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    load_thread.join()  
+    app.run(debug=True, threaded=True)
