@@ -550,3 +550,7 @@ graph TD
     º Flexibilidade e Escalabilidade]
 ``` 
 >*Fluxograma: Pipeline*
+
+# Vídeo de apresentação da 3ª Etapa 
+
+[Apresentação do Projeto de Pesquisa e Experimentação em Sistemas de Informação - 7º Semestre SI](https://www.youtube.com/watch?v=NIZ5g7IOu-E)
