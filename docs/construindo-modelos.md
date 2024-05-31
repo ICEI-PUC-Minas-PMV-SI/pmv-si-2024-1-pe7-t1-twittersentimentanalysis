@@ -553,4 +553,4 @@ graph TD
 
 # Vídeo de apresentação da 3ª Etapa 
 
-[Apresentação do Projeto de Pesquisa e Experimentação em Sistemas de Informação - 7º Semestre SI](https://www.youtube.com/watch?v=NIZ5g7IOu-E)
+[Apresentação do Projeto de Pesquisa e Experimentação em Sistemas de Informação - 7º Semestre SI](https://youtu.be/luNjhmmg6Ug)
