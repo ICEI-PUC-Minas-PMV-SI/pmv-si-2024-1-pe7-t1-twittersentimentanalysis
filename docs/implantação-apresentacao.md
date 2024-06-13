@@ -17,6 +17,9 @@ Utilizamos o **Azure Virtual Machines** para criar e configurar máquinas virtua
 - Tipo de instância: Standard B2s (para desenvolvimento e testes iniciais)
 - Sistema operacional: Ubuntu 20.04 LTS
 
+### 2.3 Configuração de Redes e Armazenamento
+
+Configuramos o **Azure Virtual Network (VNet)** para isolar a rede, e utilizamos **Azure Blob Storage** para armazenamento de dados e modelos.
 
 
 
