@@ -72,8 +72,7 @@ Embora os modelos RandomForest e GradientBoostingClassifier tenham demonstrado d
 Portanto, apenas o modelo *LSTM Bidirecional V2* foi efetivamente carregado e integrado no backend Flask para ser utilizado na inferência de sentimentos em tempo real. Os demais modelos foram descartados para a implantação em produção, embora possam ser úteis em outros contextos ou como linhas de base para trabalhos futuros.
 
 O carregamento do modelo LSTM Bidirecional V2 é realizado conforme o trecho de código a seguir:
-```
-python
+```python
 from flask import Flask, request, jsonify
 import os
 import pickle
