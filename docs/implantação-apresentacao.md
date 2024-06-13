@@ -166,6 +166,28 @@ if __name__ == "__main__":
     load_thread.join()
     app.run(debug=True, threaded=True)
 ```
+### 3.3 Implantação no Azure
+Utilizamos o **Azure Container Instances (ACI)** para hospedar o contêiner Docker do backend Flask.
+ 
+**Comandos para implantação no Azure:**
+```sh
+# Conecte-se ao Azure
+az login
+ 
+# Crie um grupo de recursos
+az group create --name twitte-sentiment-analysis --location eastus
+ 
+# Crie um registro de contêiner
+az acr create --resource-group twitte-sentiment-analysis --name twittesentimentanalysis --sku Basic  
+ 
+# Construa a imagem Docker e envie para o registro de contêiner
+docker build -t twittesentimentanalysis.azurecr.io/twittesentimentanalysisbkn:latest .
+az acr login --name twittesentimentanalysis
+docker push twittesentimentanalysis.azurecr.io/twittesentimentanalysisbkn:latest
+ 
+# Implante a instância do contêiner
+az container create --resource-group twitte-sentiment-analysis --name twittesentimentanalysisbkn --image twittesentimentanalysis.azurecr.io/twittesentimentanalysisbkn:latest --dns-name-label twittesentimentanalysisbkn --ports 5000
+```
 
 Esta abordagem garante que o modelo de melhor desempenho seja implantado em produção, proporcionando a máxima acurácia e confiabilidade na análise de sentimentos de tweets.
 # Apresentação da solução
