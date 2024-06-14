@@ -190,6 +190,28 @@ az container create --resource-group twitte-sentiment-analysis --name twittesent
 ```
 
 Esta abordagem garante que o modelo de melhor desempenho seja implantado em produção, proporcionando a máxima acurácia e confiabilidade na análise de sentimentos de tweets.
+
+## 4. Monitoramento e Ajuste de Capacidade
+### 4.1 Monitoramento
+Utilizamos *Azure Monitor* para monitorar o desempenho do modelo e configurar alertas para detectar anomalias ou problemas de desempenho. Algumas métricas importantes monitoradas incluem:
+
+- *Tempo de Latência*: O tempo necessário para o modelo processar uma solicitação e retornar uma resposta. Um aumento significativo na latência pode indicar gargalos de desempenho ou sobrecarga no sistema.
+- *Uso de CPU e Memória*: O monitoramento desses recursos é crucial para garantir que o sistema tenha recursos suficientes para lidar com a carga de trabalho.  
+- *Erros e Exceções*: O rastreamento de erros e exceções ajuda a identificar problemas no código ou no ambiente de execução.
+- *Vazão*: O número de solicitações processadas por unidade de tempo, permitindo identificar picos de demanda.
+
+### 4.2 Ajuste de Capacidade
+Implementamos escalabilidade automática com *Azure Scale Sets* para ajustar automaticamente a capacidade de acordo com a demanda. Com base em métricas de desempenho, como uso de CPU e vazão, novas instâncias de contêiner podem ser adicionadas ou removidas automaticamente para lidar com picos de tráfego ou períodos de baixa demanda.
+
+## 5. Documentação do Processo de Implantação  
+
+Toda a configuração e etapas de manutenção foram documentadas para garantir a replicabilidade e facilitar futuras atualizações. Isso inclui:
+
+- Configurações específicas do ambiente em nuvem (Azure Virtual Machines, Virtual Network, Blob Storage, etc.)
+- Instruções detalhadas para construção e implantação do contêiner Docker
+- Configurações de monitoramento e escalabilidade automática  
+- Procedimentos de manutenção e atualização do modelo
+
 # Apresentação da solução
 
 Nesta seção, um vídeo de, no máximo, 5 minutos onde deverá ser descrito o escopo todo do projeto, um resumo do trabalho desenvolvido, incluindo a comprovação de que a implantação foi realizada e, as conclusões alcançadas.
