@@ -59,7 +59,7 @@ export const HomePage = () => {
   return (
     <S.Container>
       <S.Image
-        src="src/assets/sentiment-analysis-logo.png"
+        src="/sentiment-analysis-logo.png"
         alt="logo-sentiment-analysis"
       />
       <S.Input
