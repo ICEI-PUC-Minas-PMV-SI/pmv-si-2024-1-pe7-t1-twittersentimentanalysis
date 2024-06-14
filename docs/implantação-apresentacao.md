@@ -166,6 +166,9 @@ if __name__ == "__main__":
     load_thread.join()
     app.run(debug=True, threaded=True)
 ```
+
+Esta abordagem garante que o modelo de melhor desempenho seja implantado em produção, proporcionando a máxima acurácia e confiabilidade na análise de sentimentos de tweets.
+
 ### 3.3 Implantação no Azure
 Utilizamos o **Azure Container Instances (ACI)** para hospedar o contêiner Docker do backend Flask.
  
@@ -188,8 +191,6 @@ docker push twittesentimentanalysis.azurecr.io/twittesentimentanalysisbkn:latest
 # Implante a instância do contêiner
 az container create --resource-group twitte-sentiment-analysis --name twittesentimentanalysisbkn --image twittesentimentanalysis.azurecr.io/twittesentimentanalysisbkn:latest --dns-name-label twittesentimentanalysisbkn --ports 5000
 ```
-
-Esta abordagem garante que o modelo de melhor desempenho seja implantado em produção, proporcionando a máxima acurácia e confiabilidade na análise de sentimentos de tweets.
 
 ## 4. Monitoramento e Ajuste de Capacidade
 ### 4.1 Monitoramento
