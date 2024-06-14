@@ -16,7 +16,7 @@ export const analysisSentiment = async (
     };
 
     const response: AxiosResponse<SentimentResponse> = await axios.post(
-      "https://puc-analysis-sentiment.azurewebsites.net/predict",
+      "/api/predict",
       payload
     );
 
