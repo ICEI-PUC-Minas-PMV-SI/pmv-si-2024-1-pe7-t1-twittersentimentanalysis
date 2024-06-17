@@ -201,8 +201,9 @@ Utilizamos *Azure Monitor* para monitorar o desempenho do modelo e configurar al
 - *Erros e Exceções*: O rastreamento de erros e exceções ajuda a identificar problemas no código ou no ambiente de execução.
 - *Vazão*: O número de solicitações processadas por unidade de tempo, permitindo identificar picos de demanda.
 
-### 4.2 Ajuste de Capacidade
-Implementamos escalabilidade automática com *Azure Scale Sets* para ajustar automaticamente a capacidade de acordo com a demanda. Com base em métricas de desempenho, como uso de CPU e vazão, novas instâncias de contêiner podem ser adicionadas ou removidas automaticamente para lidar com picos de tráfego ou períodos de baixa demanda.
+Abaixo, seguem gráficos de algumas métricas disponíveis na Azure:
+
+![Métricas Azure](img/key_metrics_azure.png)
 
 ## 5. Documentação do Processo de Implantação  
 
@@ -212,6 +213,32 @@ Toda a configuração e etapas de manutenção foram documentadas para garantir 
 - Instruções detalhadas para construção e implantação do contêiner Docker
 - Configurações de monitoramento e escalabilidade automática  
 - Procedimentos de manutenção e atualização do modelo
+
+## 6. Relatório do Teste de Stress da Aplicação de Análise de Sentimentos do Twitter
+
+**Introdução:**
+A aplicação de análise de sentimentos do Twitter (https://tweet-sentiment-analysis.azurewebsites.net/predict) foi submetida a um teste de stress para avaliar seu desempenho sob condições de alta carga. O objetivo era identificar o comportamento da aplicação frente a um grande volume de requisições simultâneas e garantir que ela pudesse operar de maneira eficiente e estável em situações de pico de uso.
+
+**Metodologia:**
+O teste de stress foi realizado utilizando a ferramenta Postman, configurada para simular múltiplos usuários acessando a aplicação ao mesmo tempo. Foram configurados diferentes cenários de carga, variando o número de requisições por segundo e a quantidade total de usuários simultâneos.
+
+**Resultados:**
+- *Capacidade de Resposta:* A aplicação manteve um tempo de resposta médio de 19.935 ms.
+- *Uso de Recursos:* Durante o teste, o uso de CPU e memória no servidor permaneceu dentro dos limites aceitáveis até o ponto de saturação identificado. O uso de CPU alcançou picos de 95% e a memória utilizada atingiu 95% da capacidade total disponível.
+
+**Conclusão:**
+A aplicação de análise de sentimentos do Twitter demonstrou um desempenho robusto em ambiente local em condições de alta carga, atendendo eficientemente até 450 requisições simultâneas sem degradação significativa. No entanto, acima desse ponto, a performance começa a deteriorar, sugerindo a necessidade de otimizações ou escalabilidade adicional para suportar maiores volumes de tráfego. Recomenda-se a implementação de técnicas de balanceamento de carga e a consideração de uma infraestrutura de nuvem elástica para garantir a estabilidade e a eficiência durante picos de uso extremos.
+
+Em ambiente de cloud, a alta quantidade de erros que consta no relatório referenciado abaixo deve-se ao fato de a instância utilizada na Azure não possuir capacidade computacional o suficiente para aguentar um teste de stress mais robusto. Além disso, devido a limitações nos recursos disponíveis para experimentação não foi possível a configuração de medidas de resiliência para a aplicação como load balancers, autoscalling e afins.
+
+Este teste de stress, realizado com o Postman, forneceu insights valiosos sobre a capacidade da aplicação e identificou áreas críticas para futuras melhorias e ajustes.
+
+![Relatório de teste de stress](stress_test.pdf) exportado do Postman.
+
+**Recomendações:**
+- *Otimização de Código:* Revisar e otimizar o código da aplicação para melhorar a eficiência no processamento das requisições.
+- *Escalabilidade:* Implementar mecanismos de autoescalonamento para lidar com picos de tráfego.
+- *Monitoramento Contínuo:* Estabelecer um sistema de monitoramento contínuo para identificar e mitigar rapidamente quaisquer problemas de performance.
 
 # Apresentação da solução
 
