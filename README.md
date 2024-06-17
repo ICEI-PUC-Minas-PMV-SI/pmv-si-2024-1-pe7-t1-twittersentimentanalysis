@@ -45,3 +45,6 @@ Assim que a primeira versão do sistema estiver disponível, deverá complementa
 # Apresentação
 
 <li><a href="presentation/README.md"> Apresentação da solução</a></li>
+
+
+https://github.com/ICEI-PUC-Minas-PMV-SI/pmv-si-2024-1-pe7-t1-twittersentimentanalysis/assets/60116908/f1553289-85fb-4d13-b405-f2cf7410475a
